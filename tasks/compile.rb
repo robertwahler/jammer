@@ -22,7 +22,7 @@ module BasicUnity
       output =  File.join(ROOT_FOLDER, ".mcs")
 
       # ensure the tmp folder exists
-      FileUtils::mkdir 'Temp' unless File.exists?('Temp')
+      FileUtils::mkdir 'tmp' unless File.exists?('tmp')
 
       lines = []
 
