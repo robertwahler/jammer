@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 module BasicUnity
 
   class Compile < Thor
@@ -8,19 +10,24 @@ module BasicUnity
     # adds :quiet, :skip, :pretent, :force
     add_runtime_options!
 
+    desc "check", "syntax check"
+    def check
+      run "#{mcs_binary} @.mcs"
+    end
+
     # used for syntax checking and building dll that can be run through its own unit tests
     desc "mcs", "create .mcs style response file from solution that includes editor and non-editor code and references"
     def mcs
-      dll =  File.join(ROOT_FOLDER, "tmp", "EventManager.dll")
-      output =  File.join(ROOT_FOLDER, "tmp", "EventManager.mcs.txt")
+      dll =  File.join(TMP_FOLDER, "SyntaxCheck.dll")
+      output =  File.join(ROOT_FOLDER, ".mcs")
 
       # ensure the tmp folder exists
-      FileUtils::mkdir 'tmp' unless File.exists?('tmp')
+      FileUtils::mkdir 'Temp' unless File.exists?('Temp')
 
       lines = []
 
       # header
-      lines << "-debug"
+      #lines << "-debug"
       lines << "-target:library"
       lines << "-nowarn:0169"
       lines << "-out:'#{dll}'"
@@ -69,27 +76,6 @@ module BasicUnity
       File.open(output, 'w') do |file|
         file.write(cleaned_lines.join("\n"))
       end
-    end
-
-    desc "test", "compile nunit tests"
-    def test
-      command = "#{mcs_binary} \
-                -debug \
-                -recurse:'Assets/EventManager/Source/*.cs' \
-                -recurse:'Assets/EventManager/Test/Editor/*.cs' \
-                -sdk:2 \
-                -target:library \
-                -lib:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/ \
-                -r:UnityEngine \
-                -r:UnityEditor \
-                -r:Mono.Cecil \
-                -r:Mono.Cecil.Mdb \
-                -lib:/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/ \
-                -r:UnityEngine.UI \
-                -lib:/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/EditorTestsRunner/Editor/ \
-                -r:nunit.framework \
-                -out:tmp/EventManager.Tests.dll"
-      run(command)
     end
 
     private
@@ -143,12 +129,6 @@ module BasicUnity
       File.dirname(__FILE__)
     end
 
-    def set_instance_variables
-      @product = options[:product] ? options[:product]: default_product
-      raise "invalid product: #{@product}" unless valid_products.include?(@product)
-
-      @stage = options[:development] ? "development" : default_stage
-    end
   end
 end
 

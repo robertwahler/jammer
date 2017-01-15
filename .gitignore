@@ -12,3 +12,6 @@
 *.sln
 *.userprefs
 *.usertasks
+
+# vim syntax checking response file
+.mcs

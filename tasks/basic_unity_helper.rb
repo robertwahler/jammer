@@ -6,11 +6,10 @@ module BasicUnity
 
   ROOT_FOLDER = File.expand_path(File.join(File.dirname(__FILE__), ".."))
   ASSETS_FOLDER = File.join(ROOT_FOLDER, "Assets")
-  STORE_FOLDER = File.join(ROOT_FOLDER, "store")
   DOC_FOLDER = File.join(ROOT_FOLDER, "doc")
   PROJECT_FOLDER = File.join(ROOT_FOLDER, "ProjectSettings")
   VENDOR_FOLDER = File.join(ASSETS_FOLDER, "Plugins", "Vendor")
-  TMP_FOLDER = File.join(ROOT_FOLDER, "tmp")
+  TMP_FOLDER = File.join(ROOT_FOLDER, "Temp")
   BUILD_FOLDER = File.join(ROOT_FOLDER, "build")
   PKG_FOLDER = File.join(ROOT_FOLDER, 'pkg')
   STAGING_FOLDER = File.join(TMP_FOLDER, 'staging')
@@ -168,20 +167,6 @@ module BasicUnity
       `git log --pretty=format:%h --abbrev-commit -1`
     end
 
-    # @return [String] the default product
-    def default_product
-      filename = File.join(ROOT_FOLDER, ".product")
-      contents = nil
-
-      if File.exists?(filename)
-        File.open(filename, "r") do |f|
-          contents = f.read.strip
-        end
-      end
-
-      return contents.nil? ? valid_products.first : contents
-    end
-
     # @return [String] the default unity binary folder name
     def unity_binary_folder
       filename = File.join(ROOT_FOLDER, ".unity")
@@ -194,10 +179,6 @@ module BasicUnity
       end
 
       return contents.nil? ? "Unity" : contents
-    end
-
-    def valid_products
-      ['EventManager']
     end
 
     # run using thor, this is the most compatible run method
