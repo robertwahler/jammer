@@ -28,6 +28,7 @@ redistributed with your source.
 * UnityTestTools for unit and integration testing. https://www.assetstore.unity3d.com/en/#!/content/13802
 * ConsoleE a free replacement Unity debug trace console. https://www.assetstore.unity3d.com/en/#!/content/42381
 * Json.Net.Unity3D a Unity friendly fork of Newtonsoft.Json. https://github.com/SaladLab/Json.Net.Unity3D
+* DOTween for fire and forget performant tweening. https://www.assetstore.unity3d.com/en/#!/content/27676
 
 ### Post Jam Assets, Not Included in Template
 
@@ -39,6 +40,7 @@ jam updates.
 * ConsoleE Pro.  Like the free one above but better. https://www.assetstore.unity3d.com/en/#!/content/11521
 * Text Mesh Pro. SDF Fonts! Seeing is believing. This asset should be part of stock Unity. https://www.assetstore.unity3d.com/en/#!/content/17662
 * JSON.NET for Unity. Enhanced version of Newtonsoft.Json with good compatibility and excellent support. https://www.assetstore.unity3d.com/en/#!/content/11347
+* Rewired. First class input support. Your controller will thank you. https://www.assetstore.unity3d.com/en/#!/content/21676
 
 Usage
 -----
