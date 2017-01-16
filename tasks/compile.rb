@@ -41,8 +41,12 @@ module BasicUnity
       # parse editor sln
       lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp-Editor.csproj"))
 
-      # parse main sln
-      lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp.csproj"))
+      # main sln is done by hand so this script only needs to be run when vendor code changes
+      # lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp.csproj"))
+      #lines << "-recurse:Assets/Editor/*.cs"
+      lines << "-recurse:Assets/Scripts/*.cs"
+      lines << "-recurse:Assets/Test/*.cs"
+
 
       # remove dupe assemblies, if any (tvOS, iOS)
       cleaned_lines = []
