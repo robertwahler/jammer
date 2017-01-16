@@ -56,15 +56,15 @@ module BasicUnity
       # main sln is done by hand so this script only needs to be run when vendor code changes
       # lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp.csproj"))
       #lines << "-recurse:Assets/Editor/*.cs"
+      #lines << "-recurse:Assets/Test/*.cs"
+      lines << "-recurse:Assets/Examples/*.cs" if File.exists?(File.join(ASSETS_FOLDER, "Examples"))
       lines << "-recurse:Assets/Scripts/*.cs"
-      lines << "-recurse:Assets/Test/*.cs"
-
 
       # remove dupe assemblies, if any (tvOS, iOS)
       cleaned_lines = []
       dupes = []
       lines.each do |line|
-        if line.match(/^\-r/)
+        if line.match(/^\-r:/)
           assembly_name = line.gsub(/.*\//, "")
           if dupes.include?(assembly_name)
             next

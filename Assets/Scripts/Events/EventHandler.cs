@@ -1,7 +1,6 @@
 using UnityEngine;
-using SDD.Events;
 
-namespace Colors.Events {
+namespace SDD.Events {
 
   /// <summary>
   /// Event handler

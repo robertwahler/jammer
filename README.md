@@ -18,6 +18,8 @@ Features
 Assets
 ------
 
+### Included in Template
+
 Several free and open source vendor assets are included. Most game types will
 benefit from all of these vendor assets. None are required and can be removed
 be deleting the appropriate folder from `./Assets/Plugins/Vendor`. All can be
@@ -26,7 +28,7 @@ redistributed with your source.
 * UnityTestTools for unit and integration testing. https://www.assetstore.unity3d.com/en/#!/content/13802
 * ConsoleE Free. A replacement Unity debug trace console. https://www.assetstore.unity3d.com/en/#!/content/42381
 
-### Post Jam Assets
+### Post Jam Assets, Not Included in Template
 
 Cleaning up your game after the Jam? These non-free assets should will make any
 Unity Dev happy. Alas, you can't redistribute these asset binaries or source so

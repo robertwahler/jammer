@@ -1,6 +1,4 @@
-using SDD.Events;
-
-namespace Colors.Events {
+namespace SDD.Events {
 
   /// <summary>
   /// Base event

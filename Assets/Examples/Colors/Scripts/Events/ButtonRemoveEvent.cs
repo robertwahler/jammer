@@ -1,3 +1,5 @@
+using SDD.Events;
+
 namespace Colors.Events {
 
   /// <summary>
