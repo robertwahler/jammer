@@ -38,6 +38,13 @@ jam updates.
 * ConsoleE Pro.  Like the free one above but better. https://www.assetstore.unity3d.com/en/#!/content/11521
 * Text Mesh Pro. SDF Fonts! Seeing is believing. This asset should be part of stock Unity. https://www.assetstore.unity3d.com/en/#!/content/17662
 
+Usage
+-----
+
+### Logging
+
+Add `SDD_DEBUG` to compiler defines to get trace logging.
+
 Installation
 ------------
 
