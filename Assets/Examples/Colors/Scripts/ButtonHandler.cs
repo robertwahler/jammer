@@ -84,7 +84,7 @@ namespace Colors {
 
       // only this sender is handled here
       if ((!e.Handled) && (e.ButtonHandler == this)) {
-        Log.Verbose(string.Format("ButtonHandler.OnButtonRemove({0}) name {1}", e, name));
+        Log.Debug(string.Format("ButtonHandler.OnButtonRemove({0}) name {1}", e, name));
         GameObject.Destroy(gameObject);
         // raise again as notice for logging, etc
         EventManager.Instance.Raise(new ButtonRemoveEvent(){ ButtonHandler=this, Handled=true, Kind=kind, Name=name });

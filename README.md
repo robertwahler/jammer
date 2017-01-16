@@ -3,6 +3,14 @@ Jammer
 
 A Unity game jam template with helpful assets that don't get in your way.
 
+Project Status
+--------------
+
+Work in progress. The following features need to be wired up.
+
+* Menu system
+* JSON serialization system
+
 Features
 --------
 
@@ -42,13 +50,6 @@ jam updates.
 * JSON.NET for Unity. Enhanced version of Newtonsoft.Json with good compatibility and excellent support. https://www.assetstore.unity3d.com/en/#!/content/11347
 * Rewired. First class input support. Your controller will thank you. https://www.assetstore.unity3d.com/en/#!/content/21676
 
-Usage
------
-
-### Logging
-
-Add `SDD_DEBUG` to compiler defines to get trace logging.
-
 Installation
 ------------
 
@@ -62,6 +63,30 @@ This mean turning off autocrlf is the path of least resistance.
     cd my_game 
     git config core.autocrlf false
     git checkout
+
+Compiler Defines
+----------------
+
+Compiler defines conditionally control compilation. They are mostly used for
+debugging.
+
+#### SDD_DEBUG [D]
+
+Controls misc debugging functions. Strips Verbose and Debug logging when
+missing.
+
+#### SDD_LOG_DEBUG [L0]
+
+Enable LogLevel debug. Requires SDD_DEBUG otherwise debug logs are stripped out.
+
+#### SDD_LOG_VERBOSE [L1]
+
+Enable LogLevel verbose. Requires SDD_DEBUG otherwise verbose logs are stripped
+out. Setting verbose doesn't set debug.  They are separate options.
+
+#### SDD_DEBUG_OVERLAY
+
+Shows the debug overlay stats line on all screens.
 
 Testing
 -------
