@@ -14,3 +14,14 @@ install
 
     gem install bundler
     bundle install
+
+Usage
+-----
+
+Get a list of CLI tasks
+
+    thor -T
+
+Run a task
+
+    thor compile:check

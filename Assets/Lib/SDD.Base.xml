@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SDD.Base</name>
+    </assembly>
+    <members>
+        <member name="T:SDD.Log">
+            <summary>
+            UnityEngine.Debug.Log wrapper
+            </summary>
+            <remarks>
+            Keep this in a separate assembly DLL so that double clicking a log entry
+            in Unity will skip over these wrapper methods
+            </remarks>
+        </member>
+        <member name="F:SDD.Log.LogLevels">
+            <summary>
+            Log level bitfield. Defaults announcing everything.
+            </summary>
+        </member>
+        <member name="M:SDD.Log.Verbose(System.Object)">
+            <summary>
+            Verbose logging
+            </summary>
+            <remarks>
+            Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+            </remarks>
+        </member>
+        <member name="M:SDD.Log.Debug(System.Object)">
+            <summary>
+            Debug logging
+            </summary>
+            <remarks>
+            Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+            </remarks>
+        </member>
+        <member name="M:SDD.Log.Info(System.Object)">
+            <summary>
+            User informational logging
+            </summary>
+        </member>
+        <member name="M:SDD.Log.Warning(System.Object)">
+            <summary>
+            Warning logging
+            </summary>
+        </member>
+        <member name="M:SDD.Log.Error(System.Object)">
+            <summary>
+            Error logging
+            </summary>
+        </member>
+        <member name="M:SDD.Log.Verbose(System.Object,UnityEngine.Object)">
+            <summary>
+            Verbose logging with object context
+            </summary>
+            <remarks>
+            Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+            </remarks>
+        </member>
+        <member name="M:SDD.Log.Debug(System.Object,UnityEngine.Object)">
+            <summary>
+            Debug logging with object context
+            </summary>
+            <remarks>
+            Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+            </remarks>
+        </member>
+        <member name="M:SDD.Log.Info(System.Object,UnityEngine.Object)">
+            <summary>
+            Info logging with object context
+            </summary>
+        </member>
+        <member name="M:SDD.Log.Warning(System.Object,UnityEngine.Object)">
+            <summary>
+            Warning logging with object context
+            </summary>
+        </member>
+        <member name="M:SDD.Log.Error(System.Object,UnityEngine.Object)">
+            <summary>
+            Error logging with object context
+            </summary>
+        </member>
+        <member name="T:SDD.LogLevels">
+            <summary>
+            Log levels
+            </summary>
+        </member>
+        <member name="F:SDD.LogLevels.Verbose">
+            <summary>
+            Verbose
+            </summary>
+        </member>
+        <member name="F:SDD.LogLevels.Debug">
+            <summary>
+            Debug, normal unity debug level
+            </summary>
+        </member>
+        <member name="F:SDD.LogLevels.Info">
+            <summary>
+            Info, user informational messages
+            </summary>
+        </member>
+        <member name="F:SDD.LogLevels.Warning">
+            <summary>
+            Warning, normal unity error level
+            </summary>
+        </member>
+        <member name="F:SDD.LogLevels.Error">
+            <summary>
+            Error, normal unity error level
+            </summary>
+        </member>
+    </members>
+</doc>

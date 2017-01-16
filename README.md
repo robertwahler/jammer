@@ -1,13 +1,19 @@
 Jammer
 ======
 
-A Unity game jam template
+A Unity game jam template with helpful assets that don't get in your way.
 
 Features
 --------
 
 * Loosely coupled, type safe event system
 * Lighting fast syntax checking for Vim users
+* Optional Ruby scripting framework to make CLI tasks easy to create and
+  maintain.  See `./tasks/README.md`
+* Granular Unity debug log wrapper with source (./src) but compiled to DLL
+  (./Assets/Lib) to avoid wrapper functions junking up your stack traces.
+  Conditionally compiled to allow complete trace logging removal for production
+  builds.  Rebuild via `thor compile:base`
 
 Assets
 ------
@@ -23,7 +29,9 @@ redistributed with your source.
 ### Post Jam Assets
 
 Cleaning up your game after the Jam? These non-free assets should will make any
-Unity Dev happy. Alas, you can't redistribute these asset binaries or source.
+Unity Dev happy. Alas, you can't redistribute these asset binaries or source so
+they are NOT included in this toolkit but they are highly recommended for post
+jam updates.
 
 * ConsoleE Pro.  Like the free one above but better. https://www.assetstore.unity3d.com/en/#!/content/11521
 * Text Mesh Pro. SDF Fonts! Seeing is believing. This asset should be part of stock Unity. https://www.assetstore.unity3d.com/en/#!/content/17662
@@ -34,7 +42,7 @@ Installation
 Unity and vendor assets want to control their own line endings.
 This mean turning off autocrlf is the path of least resistance.
 
-### Clone Jammmer
+### Clone Jammer
 
     cd ~/workspace
     git clone git@github.com/robertwahler/jammer.git my_game -n
@@ -77,6 +85,8 @@ Install https://github.com/neomake/neomake and add this to your .vimrc
 Errors can be viewed via :lopen
 
 ### Create .mcs file
+
+NOTE: See `./tasks/README.md` for thor setup.
 
     thor compile:mcs
 

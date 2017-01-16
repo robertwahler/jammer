@@ -10,7 +10,19 @@ module BasicUnity
     # adds :quiet, :skip, :pretent, :force
     add_runtime_options!
 
-    desc "check", "syntax check"
+    desc "base", "compile ./src/SDD.Base to Assets/Lib/SDD.Base.dll"
+    def base
+      command = "#{mcs_binary} -recurse:'src/SDD/Base/*.cs' \
+                 -lib:/Applications/Unity/Unity.app/Contents/Frameworks/ \
+                 -lib:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/ \
+                 -r:UnityEngine \
+                 -target:library \
+                 -out:Assets/Lib/SDD.Base.dll \
+                 -doc:Assets/Lib/SDD.Base.xml"
+      run(command)
+    end
+
+    desc "check", "CLI syntax check"
     def check
       run "#{mcs_binary} @.mcs"
     end
