@@ -10,6 +10,7 @@ Work in progress. The following features need to be wired up.
 
 * Menu system
 * JSON serialization system
+* Dynamic scene loading
 
 Features
 --------

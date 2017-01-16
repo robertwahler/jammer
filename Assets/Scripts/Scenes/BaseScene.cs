@@ -28,7 +28,7 @@ namespace Jammer.Scenes {
     }
 
     protected virtual void Update() {
-      //if ((Game != null) && !Game.Focused) return;
+      if ((Game != null) && !Game.Focused) return;
 
       HandleInput();
     }

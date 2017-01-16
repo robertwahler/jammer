@@ -380,6 +380,7 @@ GameObject:
   - 114: {fileID: 11410458}
   - 114: {fileID: 11441614}
   - 114: {fileID: 11476576}
+  - 114: {fileID: 11452466}
   m_Layer: 5
   m_Name: ColorsCanvas
   m_TagString: Untagged
@@ -2379,6 +2380,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: remove
+--- !u!114 &11452466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bfb7e80fd8f4137878dc70fe0975b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11455092
 MonoBehaviour:
   m_ObjectHideFlags: 1

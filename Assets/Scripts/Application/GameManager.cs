@@ -232,6 +232,12 @@ namespace Jammer {
     }
 
     private void HandleInput() {
+
+      if (Input.GetKeyDown(KeyCode.Escape)) {
+        Log.Debug(string.Format("InputHandler.Update() KeyCode.Escape"));
+
+        EventManager.Instance.Raise(new MainMenuCommandEvent(){ Handled=false });
+      }
     }
 
   }
