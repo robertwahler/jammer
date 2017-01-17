@@ -15,6 +15,11 @@ namespace Jammer {
   public class MenuManager : EventHandler {
 
     /// <summary>
+    /// Main menu container. Set in IDE.
+    /// </summary>
+    public GameObject menuContainer;
+
+    /// <summary>
     /// There should be just one manager. If not found return null
     /// </summary>
     public static MenuManager Instance {
@@ -29,9 +34,15 @@ namespace Jammer {
     }
     private static MenuManager instance = null;
 
+    /// <summary>
+    /// The name of the currently loaded scene or nil none
+    /// </summary>
+    public string CurrentScene { get; set; }
+
     public override void SubscribeEvents() {
       Log.Debug(string.Format("MenuManager.SubscribeEvents()"));
 
+      Events.AddListener<MainMenuCommandEvent>(OnMainMenuCommand);
       Events.AddListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
       Events.AddListener<UnloadSceneCommandEvent>(OnUnloadSceneCommand);
     }
@@ -39,9 +50,19 @@ namespace Jammer {
     public override void UnsubscribeEvents() {
       Log.Debug(string.Format("MenuManager.UnsubscribeEvents()"));
 
+      Events.RemoveListener<MainMenuCommandEvent>(OnMainMenuCommand);
       Events.RemoveListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
       Events.RemoveListener<UnloadSceneCommandEvent>(OnUnloadSceneCommand);
     }
+
+    public void OnMainMenuCommand(MainMenuCommandEvent e) {
+      if (!e.Handled) {
+        Log.Debug(string.Format("GameScene.OnMainMenuCommand({0})", e));
+
+        menuContainer.SetActive(true);
+      }
+    }
+
 
     /// <summary>
     /// Request to unload a scene
@@ -64,6 +85,15 @@ namespace Jammer {
       if (!e.Handled) {
         Log.Debug(string.Format("MenuManager.OnLoadSceneCommand({0})", e));
 
+        // turn off menus
+        menuContainer.SetActive(false);
+
+        if (CurrentScene == e.SceneName) {
+          // TODO: Add e.Force to reload if needed
+          Log.Debug(string.Format("MenuManager.OnLoadSceneCommand({0}) skipping, already loaded", e));
+          return;
+        }
+
         switch (e.Mode) {
 
           case LoadSceneMode.Additive:
@@ -75,8 +105,10 @@ namespace Jammer {
             break;
         }
 
+        CurrentScene = e.SceneName;
+
         // notify event
-        Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=e.SceneName, Mode=e.Mode });
+        Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=CurrentScene, Mode=e.Mode });
       }
     }
 

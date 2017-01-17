@@ -16,6 +16,7 @@ Features
 --------
 
 * Loosely coupled, type safe event system
+* Single scene or multi-scene game support. Game can be started from any scene to speed development testing.
 * Lighting fast syntax checking for Vim users
 * Optional Ruby scripting framework to make CLI tasks easy to create and
   maintain.  See `./tasks/README.md`
@@ -65,6 +66,11 @@ This mean turning off autocrlf is the path of least resistance.
     cd my_game 
     git config core.autocrlf false
     git checkout
+
+### Make Your Game
+
+* Completely replace the contents of scene file Level1.unity with your game
+* Delete the ./Examples folder
 
 Compiler Defines
 ----------------

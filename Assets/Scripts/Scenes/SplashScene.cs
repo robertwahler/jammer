@@ -51,7 +51,7 @@ namespace Jammer.Scenes {
       }
 
       // Animate logo
-      float duration = 4f;
+      float duration = 3f;
       canvasGroupLogo.DOFade(1f, duration: duration);
 
       // wait for animation, short-circuit via any keypress
