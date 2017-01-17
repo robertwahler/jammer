@@ -20,7 +20,7 @@ Features
 * Single scene or multi-scene game support. Game can be started from any scene to speed development testing.
 * Lighting fast syntax checking for Vim users
 * Optional Ruby scripting framework to make CLI tasks easy to create and
-  maintain.  See `./tasks/README.md`
+  maintain.  See [tasks/README.md](tasks/README.md)
 * Granular Unity debug log wrapper with source (./src) but compiled to DLL
   (./Assets/Lib) to avoid wrapper functions junking up your stack traces.
   Conditionally compiled to allow complete trace logging removal for production
@@ -133,11 +133,11 @@ Errors can be viewed via :lopen
 
 ### Create .mcs file
 
-NOTE: See `./tasks/README.md` for thor setup.
+NOTE: See [tasks/README.md](tasks/README.md) for thor setup.
 
     thor compile:mcs
 
 License
 -------
 
-MIT, see ./LICENSE for details.
+MIT, see [LICENSE](LICENSE) for details.
