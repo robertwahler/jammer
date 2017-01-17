@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1.02927,0,0,1,34.7073,44.5)">
+        <path d="M420,29.907C420,18.92 411.334,10 400.659,10L29.341,10C18.666,10 10,18.92 10,29.907L10,137.093C10,148.08 18.666,157 29.341,157L400.659,157C411.334,157 420,148.08 420,137.093L420,29.907Z" style="fill:white;stroke:black;stroke-width:3.45px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,49.4536,71.7344)">
+        <text x="30px" y="84.766px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:96px;">Jammer</text>
+    </g>
+</svg>

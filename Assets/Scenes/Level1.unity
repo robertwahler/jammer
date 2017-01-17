@@ -967,7 +967,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 75
+  m_PreferredHeight: 60
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
 --- !u!1 &700448118
@@ -3416,7 +3416,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click a button or remove it.
+  m_Text: 'Click a colored button or remove it via "remove"
+
+    Press ESC for menu'
 --- !u!222 &1368750275
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3888,7 +3890,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 30
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3898,7 +3900,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Click any colored button. All buttons of the same color respond. Click "remove"
     to destroy the button and its event handlers. Open the Unity debug console to
-    watch the action.
+    watch the action. Press ESC for the main menu.
 --- !u!222 &1573419240
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4222,7 +4224,7 @@ MonoBehaviour:
     m_Left: 10
     m_Right: 10
     m_Top: 10
-    m_Bottom: 10
+    m_Bottom: 30
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
