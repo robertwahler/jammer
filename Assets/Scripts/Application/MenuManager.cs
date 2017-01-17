@@ -59,7 +59,7 @@ namespace Jammer {
       if (!e.Handled) {
         Log.Debug(string.Format("GameScene.OnMainMenuCommand({0})", e));
 
-        menuContainer.SetActive(true);
+        menuContainer.SetActive(!menuContainer.activeSelf);
       }
     }
 

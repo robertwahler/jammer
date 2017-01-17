@@ -6,11 +6,10 @@ A Unity game jam template with helpful assets that don't get in your way.
 Project Status
 --------------
 
-Work in progress. The following features need to be wired up.
+Work in progress. The following features need to be added or wired up.
 
-* Menu system
-* JSON serialization system
-* Dynamic scene loading
+* Menu animations
+* Audio mixer and audio control menu
 
 Features
 --------

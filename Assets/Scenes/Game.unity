@@ -85,6 +85,34 @@ NavMeshSettings:
     cellSize: 0.16666666
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &214488660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 214488661}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &214488661
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214488660}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 670058266}
+  m_RootOrder: 2
 --- !u!1001 &566775813
 Prefab:
   m_ObjectHideFlags: 0
@@ -220,11 +248,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22474462, guid: 43164e8430dfb48d98336858569e3239, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -520
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43164e8430dfb48d98336858569e3239, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &670058266 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 489680, guid: 43164e8430dfb48d98336858569e3239, type: 2}
+  m_PrefabInternal: {fileID: 670058265}
 --- !u!1 &1423402121
 GameObject:
   m_ObjectHideFlags: 0
