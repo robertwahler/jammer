@@ -1,7 +1,9 @@
 Jammer
 ======
 
-A Unity game jam template with helpful assets that don't get in your way.
+Unity game jam template with just enough structure to ease moving past the jam phase.
+
+Take a look at the feature list to see if this project will work for you.
 
 Project Status
 --------------
