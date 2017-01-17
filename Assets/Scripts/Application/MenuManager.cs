@@ -35,6 +35,11 @@ namespace Jammer {
     private static MenuManager instance = null;
 
     /// <summary>
+    /// Menu state
+    /// </summary>
+    public MenuState State { get { return GetState(); } set { SetState(value); }}
+
+    /// <summary>
     /// The name of the currently loaded scene or nil none
     /// </summary>
     public string CurrentScene { get; set; }
@@ -59,7 +64,13 @@ namespace Jammer {
       if (!e.Handled) {
         Log.Debug(string.Format("GameScene.OnMainMenuCommand({0})", e));
 
-        menuContainer.SetActive(!menuContainer.activeSelf);
+        // MenuCommand is a toggle
+        if (State == MenuState.Closed) {
+          State = MenuState.Open;
+        }
+        else {
+          State = MenuState.Closed;
+        }
       }
     }
 
@@ -86,7 +97,7 @@ namespace Jammer {
         Log.Debug(string.Format("MenuManager.OnLoadSceneCommand({0})", e));
 
         // turn off menus
-        menuContainer.SetActive(false);
+        State = MenuState.Closed;
 
         if (CurrentScene == e.SceneName) {
           // TODO: Add e.Force to reload if needed
@@ -110,6 +121,37 @@ namespace Jammer {
         // notify event
         Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=CurrentScene, Mode=e.Mode });
       }
+    }
+
+    private MenuState GetState() {
+      if (menuContainer.activeSelf) {
+        return MenuState.Open;
+      }
+      else {
+        return MenuState.Closed;
+      }
+    }
+
+    private void SetState(MenuState value) {
+      Log.Verbose(string.Format("MenuManager.SetState(value: {0})", value));
+
+      switch(value) {
+
+        case MenuState.Closed:
+          menuContainer.SetActive(false);
+          break;
+
+        case MenuState.Open:
+          menuContainer.SetActive(true);
+          break;
+
+        default:
+          Log.Error(string.Format("MenuManager.SetState(value: {0}) unhandled state", value));
+          break;
+      }
+
+      // notify event
+      Events.Raise(new MainMenuCommandEvent() { Handled=true, State=State });
     }
 
   }

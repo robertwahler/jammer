@@ -18,8 +18,6 @@ namespace Jammer.Scenes {
     /// </summary>
     public LoadSceneMode Mode { get; set; }
 
-    //public Dictionary<string, string> Parameters = null;
-
     /// <summary>
     /// Return a string
     /// </summary>

@@ -1,0 +1,5 @@
+http://www.freesound.org/people/levelclearer/sounds/259324/
+---
+description: Spacesynth loop. Solemn space theme sequence looping.
+copyright: CC0
+loop: true
