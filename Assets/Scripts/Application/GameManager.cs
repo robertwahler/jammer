@@ -1,10 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -56,6 +52,9 @@ namespace Jammer {
     protected override void Initialize() {
       Log.Debug(string.Format("GameManager.Initialize() ID={0}", GetInstanceID()));
       base.Initialize();
+
+      // App starts focused
+      Focused = true;
 
       // create settings at their defaults
       ApplicationSettings = new ApplicationSettings();

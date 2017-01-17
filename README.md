@@ -23,6 +23,7 @@ Features
   (./Assets/Lib) to avoid wrapper functions junking up your stack traces.
   Conditionally compiled to allow complete trace logging removal for production
   builds.  Rebuild via `thor compile:base`
+* On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
 
 Assets
 ------

@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using SDD;
-using SDD.Events;
 
 namespace Jammer.Scenes {
 
@@ -18,6 +15,13 @@ namespace Jammer.Scenes {
 
     // scene to load after splash shown
     const string MAINSCENE = "Game";
+
+    public override void Awake() {
+      Log.Debug(string.Format("SplashScene.Awake()"));
+
+      // Don't call base.Awake(), this is the only scene that doesn't
+      // need to support hot-loading of the GameManager
+    }
 
     protected override void OnEnable() {
       Log.Debug(string.Format("SplashScene.OnEnable()"));
@@ -32,27 +36,10 @@ namespace Jammer.Scenes {
       }
     }
 
-    protected IEnumerator Start() {
+    protected void Start() {
       Log.Debug(string.Format("SplashScene.Start()"));
 
-      // max wait for game to start before animation
-      float wait = 10.0f;
-      while (wait > 0) {
-        wait -= Time.deltaTime;
-        yield return null;
-
-        if ((Game.State != GameState.New) && (Game.State != GameState.Loading)) {
-          // game ready, start animation
-          StartCoroutine(AnimateStart());
-          yield break;
-        }
-      }
-
-      // fail safe, this should never run but if the timer expires, load the main scene
-      yield return WaitFor.Seconds(10.0f);
-      StopAllCoroutines();
-      Log.Warning(string.Format("SplashScene.Start() fail-safe timer expired"));
-      Events.Raise(new LoadSceneCommandEvent() { Handled=false, SceneName=MAINSCENE, Mode=LoadSceneMode.Single });
+      StartCoroutine(AnimateStart());
     }
 
     private IEnumerator AnimateStart() {
@@ -67,13 +54,14 @@ namespace Jammer.Scenes {
       float duration = 4f;
       canvasGroupLogo.DOFade(1f, duration: duration);
 
-      // wait for animation, can be cut short via keypress
+      // wait for animation, short-circuit via any keypress
       while ((duration > 0) && (!Input.anyKeyDown)) {
         duration -= Time.deltaTime;
         yield return null;
       }
 
-      Events.Raise(new LoadSceneCommandEvent() { Handled=false, SceneName=MAINSCENE, Mode=LoadSceneMode.Single });
+      // load the main game scene, it handles the GameManager, Menus, and loading levels
+      UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName: MAINSCENE, mode: UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
   }
 }
