@@ -20,9 +20,9 @@ Features
 * Single scene or multi-scene game support. Game can be started from any scene to speed development testing.
 * Lighting fast syntax checking for Vim users
 * Optional Ruby scripting framework to make CLI tasks easy to create and
-  maintain.  See [tasks/README.md](tasks/README.md)
-* Granular Unity debug log wrapper with source (./src) but compiled to DLL
-  (./Assets/Lib) to avoid wrapper functions junking up your stack traces.
+  maintain.  See [./tasks/README.md](tasks/README.md)
+* Granular Unity debug log wrapper with source [./src](src) but compiled to DLL
+  [./Assets/Lib](Assets/Lib) to avoid wrapper functions junking up your stack traces.
   Conditionally compiled to allow complete trace logging removal for production
   builds.  Rebuild via `thor compile:base`
 * On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
@@ -34,8 +34,9 @@ Assets
 
 Several free and open source vendor assets are included. Most game types will
 benefit from all of these vendor assets. None are required and can be removed
-be deleting the appropriate folder from `./Assets/Plugins/Vendor`. All can be
-redistributed with your source.
+be deleting the appropriate folder from
+[./Assets/Plugins/Vendor](Assets/Plugins/Vendor). All can be redistributed with
+your source.
 
 * UnityTestTools for unit and integration testing. https://www.assetstore.unity3d.com/en/#!/content/13802
 * ConsoleE a free replacement Unity debug trace console. https://www.assetstore.unity3d.com/en/#!/content/42381
