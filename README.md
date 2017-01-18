@@ -13,7 +13,7 @@ Created with Unity 5.3.6f1.
 This is a work in progress. The following features need to be added or wired up.
 
 * Menu animations
-* Audio mixer and audio control menu
+* Audio mixer 
 
 Features
 --------
@@ -27,6 +27,7 @@ Features
   [./Assets/Lib](Assets/Lib) to avoid wrapper functions junking up your stack traces.
   Conditionally compiled to allow complete trace logging removal for production
   builds.  Rebuild via `thor compile:base`
+* Player prefs alternative that serializes to JSON in a predictable location on all platforms
 * On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
 
 Assets
@@ -79,11 +80,46 @@ This mean that turning off git's autocrlf is the path of least resistance.
 * Completely replace the contents of scene file Level1.unity with your game
 * Delete the ./Examples folder
 
-Compiler Defines
-----------------
+JSON Serialization
+------------------
 
-Compiler defines conditionally control compilation. They are mostly used for
-debugging.
+This template uses a JSON serialization system as an alternative to Unity's
+player prefs.  Game saves and custom game configuration settings are located in
+a platform specific folder in standard JSON format. 
+
+Different locations are used depending on the build type.
+
+### Unity Editor 
+
+Save data is stored in `./tmp/settings`. This allows development settings to be
+different than production. i.e. turn off the audio when working in the IDE.
+
+### Unity Editor Tests
+
+Save data is stored in `./tmp/test`. This allows the test suite to easily mock
+serialization data.
+
+### Standalone 
+
+#### Windows
+
+    ~/AppData/LocalLow/<%= company_name %>/<%= product_name %>/
+
+#### macOS
+
+    ~/Library/Application Support/<%= company_name %>/<%= product_name %>/
+
+#### Linux
+
+    ~/.config/unity3d/<%= company_name %>/<%= product_name %>/
+
+
+Preprocessor Directives
+-----------------------
+
+Compiler defines conditionally control compilation.
+
+To use, add then to Unity's `Player Settings, Other Settings, Scripting Define Symbols`
 
 #### SDD_DEBUG [D]
 

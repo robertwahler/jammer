@@ -22,7 +22,7 @@ namespace Jammer.Test {
       audioManager.name = "audioManager";
       // Testing MonoBehaviours requires taking manual control. Call a
       // protected method for setup.
-      audioManager.Call("OnEnable");
+      audioManager.Call("Awake");
     }
 
     [TearDown]

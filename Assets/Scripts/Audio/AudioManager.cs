@@ -13,6 +13,21 @@ namespace Jammer {
   public class AudioManager : EventHandler {
 
     /// <summary>
+    /// There should be just one manager. If not found return null
+    /// </summary>
+    public static AudioManager Instance {
+      get {
+        if (instance == null) {
+          Log.Debug(string.Format("AudioManager.Instance.get looking for object"));
+          instance = (AudioManager) GameObject.FindObjectOfType(typeof(AudioManager));
+        }
+
+        return instance;
+      }
+    }
+    private static AudioManager instance = null;
+
+    /// <summary>
     /// Master maixer ref. Set in IDE.
     /// </summary>
     public AudioMixer mixerMaster;
@@ -32,10 +47,14 @@ namespace Jammer {
     /// </summary>
     private AudioSettings audioSettings = new AudioSettings();
 
-    protected override void OnEnable() {
-      Log.Verbose(string.Format("AudioManager.SubscribeEvents()"));
+    protected void Awake() {
+      Log.Verbose(string.Format("AudioManager.Awake()"));
 
       Load();
+
+      // sync subscribers to our initial state, if subscribers are not awake
+      // yet, they will need to ask for the settings
+      Events.Raise(new AudioSettingsCommandEvent() { Handled=true, MuteAudio=MuteAudio });
     }
 
     private IEnumerator Start() {
@@ -49,11 +68,39 @@ namespace Jammer {
       }
     }
 
+    public override void SubscribeEvents() {
+      Log.Debug(string.Format("AudioManager.SubscribeEvents()"));
+
+      Events.AddListener<MainMenuCommandEvent>(OnMainMenuCommand);
+      Events.AddListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
+    }
+
+    public override void UnsubscribeEvents() {
+      Log.Debug(string.Format("AudioManager.UnsubscribeEvents()"));
+
+      Events.RemoveListener<MainMenuCommandEvent>(OnMainMenuCommand);
+      Events.RemoveListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
+    }
+
+    public void OnAudioSettingsCommand(AudioSettingsCommandEvent e) {
+      if (!e.Handled) {
+        Log.Debug(string.Format("AudioManager.OnAudioSettingsCommand({0})", e));
+        MuteAudio = e.MuteAudio;
+      }
+    }
+
+    public void OnMainMenuCommand(MainMenuCommandEvent e) {
+      if (!e.Handled) {
+        Log.Debug(string.Format("AudioManager.OnMainMenuCommand({0})", e));
+        // TODO: lower vol/freq using filter when menus are open
+      }
+    }
+
     /// <summary>
     /// Load audio settings from JSON, if param null, will load from default
     /// </summary>
     public void Load(string json=null) {
-      Log.Debug(string.Format("AudioManager.Load(json: {0})", json));
+      Log.Verbose(string.Format("AudioManager.Load(json: {0})", json));
 
       try {
         if (string.IsNullOrEmpty(json)) {
@@ -63,6 +110,7 @@ namespace Jammer {
         }
         if (!string.IsNullOrEmpty(json)) {
           audioSettings = JsonConvert.DeserializeObject<AudioSettings>(json);
+          Log.Debug(string.Format("AudioManager.Load(json: {0}) loaded audioSettings {1}", json, audioSettings));
         }
         else {
           Log.Verbose(string.Format("AudioManager.Load(json: {0}) Audio.txt empty, using audio defaults", json));
@@ -98,26 +146,6 @@ namespace Jammer {
       mixerMaster.SetFloat("volumeMaster", volume);
     }
 
-    public override void SubscribeEvents() {
-      Log.Debug(string.Format("AudioManager.SubscribeEvents()"));
-
-      Events.AddListener<MainMenuCommandEvent>(OnMainMenuCommand);
-    }
-
-    public override void UnsubscribeEvents() {
-      Log.Debug(string.Format("AudioManager.UnsubscribeEvents()"));
-
-      Events.RemoveListener<MainMenuCommandEvent>(OnMainMenuCommand);
-    }
-
-    public void OnMainMenuCommand(MainMenuCommandEvent e) {
-      if (!e.Handled) {
-        Log.Debug(string.Format("AudioManager.OnMainMenuCommand({0})", e));
-
-        // TODO: lower vol/freq using filter when menus are open
-      }
-    }
-
     private bool GetMuteAudio() {
       return audioSettings.MuteAudio;
     }
@@ -127,8 +155,15 @@ namespace Jammer {
 
       if (value != audioSettings.MuteAudio) {
         audioSettings.MuteAudio = value;
-        musicAudioSource.Stop();
+        if (audioSettings.MuteAudio) {
+          musicAudioSource.Stop();
+        }
+        else {
+          musicAudioSource.Play();
+        }
         Save();
+        // notify event
+        Events.Raise(new AudioSettingsCommandEvent() { Handled=true, MuteAudio=MuteAudio });
       }
     }
 

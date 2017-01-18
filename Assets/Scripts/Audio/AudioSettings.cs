@@ -30,7 +30,7 @@ namespace Jammer {
     /// Return a string
     /// </summary>
     public override string ToString(){
-      return string.Format("{0}, MuteAudio {0}, VolumeMusic {1}, VolumeSFX {2}", base.ToString(), MuteAudio, VolumeMusic, VolumeSFX);
+      return string.Format("{0}, MuteAudio {1}, VolumeMusic {2}, VolumeSFX {3}", base.ToString(), MuteAudio, VolumeMusic, VolumeSFX);
     }
   }
 }
