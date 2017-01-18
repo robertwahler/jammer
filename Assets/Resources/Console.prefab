@@ -1669,7 +1669,7 @@ MonoBehaviour:
   collapseButtonSelectedColor: {r: 0.7764706, g: 0.9529412, b: 0.8156863, a: 1}
   filterButtonsNormalColor: {r: 0.9558824, g: 0.9558824, b: 0.9558824, a: 1}
   filterButtonsSelectedColor: {r: 0.9607843, g: 0.8784314, b: 0.7294118, a: 1}
-  toggleKey: 92
+  toggleKey: 96
 --- !u!114 &11453682
 MonoBehaviour:
   m_ObjectHideFlags: 1
