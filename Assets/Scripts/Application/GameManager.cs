@@ -207,12 +207,15 @@ namespace Jammer {
     /// <summary>
     /// Create a prefab by name, loading from Resources. Returns null if the prefab can't be loaded.
     /// </summary>
-    public static GameObject CreatePrefab(string name, GameObject parent = null, string folder = null) {
+    public GameObject CreatePrefab(string name, GameObject parent = null, string folder = null) {
       string path;
       GameObject prefab;
 
       // must use POSIX style slashes
-      if (!string.IsNullOrEmpty(folder)) {
+      if (string.IsNullOrEmpty(folder)) {
+        path = name;
+      }
+      else {
         path = folder + "/" + name;
       }
 
