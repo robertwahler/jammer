@@ -15,14 +15,14 @@ namespace Jammer {
     /// <summary>
     /// Music volume
     /// </summary>
-    // TODO: Implement and remove JsonIgnore
+    // TODO: Implement volume control and remove JsonIgnore
     [JsonIgnore]
     public float VolumeMusic { get; set; }
 
     /// <summary>
     /// Sound effects volume
     /// </summary>
-    // TODO: Implement and remove JsonIgnore
+    // TODO: Implement volume control and remove JsonIgnore
     [JsonIgnore]
     public float VolumeSFX { get; set; }
 
