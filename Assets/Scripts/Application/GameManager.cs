@@ -204,6 +204,38 @@ namespace Jammer {
       return result;
     }
 
+    /// <summary>
+    /// Create a prefab by name, loading from Resources. Returns null if the prefab can't be loaded.
+    /// </summary>
+    public static GameObject CreatePrefab(string name, GameObject parent = null, string folder = null) {
+      string path;
+      GameObject prefab;
+
+      // must use POSIX style slashes
+      if (!string.IsNullOrEmpty(folder)) {
+        path = folder + "/" + name;
+      }
+
+      Log.Debug(string.Format("Product.Load() loading asset at {0}", path));
+      // this is the "live" prefab, not an instance clone that lives in the scene
+      prefab = (GameObject) Resources.Load(path);
+
+      if (prefab != null) {
+        // an instance clone that lives in the scene
+        prefab = (GameObject) UnityEngine.Object.Instantiate(prefab);
+        // remove the "(clone)" from the name
+        prefab.name = name;
+        // assign parent if not given so the the instance will be cleaned up with the scene
+        if (parent == null) {
+          // this gameObject
+          parent = gameObject;
+        }
+        prefab.transform.SetParent(parent.transform, worldPositionStays: true);
+      }
+
+      return prefab;
+    }
+
     private LogLevels GetLogLevels() {
       return logLevels;
     }
