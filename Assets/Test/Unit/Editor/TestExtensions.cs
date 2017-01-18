@@ -1,4 +1,4 @@
-namespace Examples.Test {
+namespace Jammer.Test {
   static class TestExtensions {
 
     public static object Call(this object obj, string methodName, params object[] args) {

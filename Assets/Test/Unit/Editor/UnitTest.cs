@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
 
-namespace Examples.Test {
+namespace Jammer.Test {
 
   /// <summary>
   /// Base class for unit tests

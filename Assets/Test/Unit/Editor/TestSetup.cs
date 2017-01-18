@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Examples.Test {
+namespace Jammer.Test {
 
   [SetUpFixture]
   public class TestSetup {
@@ -37,7 +37,7 @@ namespace Examples.Test {
     }
 
     /// <summary>
-    /// This is run before all the tests in this namespace (SDD.Test)
+    /// This is run before all the tests in this namespace (Jammer.Test)
     /// </summary>
     [SetUp]
     public void BeforeAll() {
@@ -51,7 +51,7 @@ namespace Examples.Test {
     }
 
     /// <summary>
-    /// This is run after all the tests in this namespace (SDD.Test)
+    /// This is run after all the tests in this namespace (Jammer.Test)
     /// </summary>
     [TearDown]
     public void AfterAll() {
@@ -84,22 +84,24 @@ namespace Examples.Test {
     /// Clear the settings for a fresh start
     /// </summary>
     public void ClearSettings() {
-      Debug.Log(string.Format("TestSetup.ClearSettingsFolder()"));
+      Debug.Log(string.Format("TestSetup.ClearSettingsFolder() TestPath {0}", TestPath));
 
-      //if (System.IO.Directory.Exists(TestPath)) {
-        //System.IO.Directory.Delete(path: TestPath, recursive: true);
-      //}
+      if (System.IO.Directory.Exists(TestPath)) {
+        System.IO.Directory.Delete(path: TestPath, recursive: true);
+      }
 
-      //if (!System.IO.Directory.Exists(TestPath)) {
-        //System.IO.Directory.CreateDirectory(TestPath);
-      //}
+      if (!System.IO.Directory.Exists(TestPath)) {
+        System.IO.Directory.CreateDirectory(TestPath);
+      }
+
+      Settings.Clear();
     }
 
     private void StubSettingsPath() {
       Debug.Log(string.Format("TestSetup.StubSettingsPath()"));
 
       // stub out production serialization folder
-      //SDD.Settings.DataPath = TestPath;
+      Jammer.Settings.DataPath = TestPath;
       ClearSettings();
     }
 

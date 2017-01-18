@@ -44,6 +44,26 @@ namespace Jammer {
     public static readonly SettingsKey Game = new SettingsKey(400, "data.game");
 
     /// <summary>
+    /// Local achievements save [folder] [data]
+    /// </summary>
+    public static readonly SettingsKey Achievements = new SettingsKey(500, "data.achievements.");
+
+    /// <summary>
+    /// Local leaderboard save [folder] [data]
+    /// </summary>
+    public static readonly SettingsKey Leaderboards = new SettingsKey(700, "data.leaderboards.");
+
+    /// <summary>
+    /// Application version info in version.txt
+    /// </summary>
+    public static readonly SettingsKey Version = new SettingsKey(800, "version");
+
+    /// <summary>
+    /// Language code and configuration [config]
+    /// </summary>
+    public static readonly SettingsKey Language = new SettingsKey(900, "language");
+
+    /// <summary>
     /// Constructor
     /// </summary>
     private SettingsKey(int value, string name) {
