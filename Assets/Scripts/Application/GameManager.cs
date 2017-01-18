@@ -50,7 +50,7 @@ namespace Jammer {
     /// Initialize happens on Awake only for new Singletons.
     /// </summary>
     protected override void Initialize() {
-      Log.Debug(string.Format("GameManager.Initialize() ID={0}", GetInstanceID()));
+      Log.Verbose(string.Format("GameManager.Initialize() ID={0}", GetInstanceID()));
       base.Initialize();
 
       // App starts focused
@@ -110,10 +110,28 @@ namespace Jammer {
     }
 
     protected void OnEnable() {
-      Log.Debug(string.Format("GameManager.OnEnable() this={0}", this));
+      Log.Verbose(string.Format("GameManager.OnEnable() this={0}", this));
 
+      SubscribeEvents();
       State = GameState.Started;
     }
+
+    protected virtual void OnDisable(){
+      Log.Verbose(string.Format("ApplicationManager.OnDisable()"));
+
+      UnsubscribeEvents();
+    }
+
+    protected virtual void SubscribeEvents() {
+      Log.Verbose(string.Format("ApplicationManager.SubscribeEvents()"));
+
+    }
+
+    protected virtual void UnsubscribeEvents() {
+      Log.Verbose(string.Format("ApplicationManager.UnsubscribeEvents()"));
+
+    }
+
 
     // Event order:
     //
@@ -142,7 +160,7 @@ namespace Jammer {
     }
 
     public void SaveSettings() {
-      Log.Debug(string.Format("ApplicationManager.Save()"));
+      Log.Debug(string.Format("ApplicationManager.SaveSettings()"));
 
       string json = SerializeSettings();
       Settings.SetString(SettingsKey.Application, json);
@@ -167,7 +185,7 @@ namespace Jammer {
     /// of strings.
     /// </summary>
     public bool DeserializeSettings(string json) {
-      Log.Verbose(string.Format("ApplicationManager.DeserializeSettings({0}) this={1}", json,  this));
+      Log.Debug(string.Format("ApplicationManager.DeserializeSettings({0}) this={1}", json,  this));
 
       bool result = false;
 

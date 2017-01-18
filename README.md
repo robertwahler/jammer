@@ -8,7 +8,9 @@ Take a look at the feature list to see if this project will work for you.
 Project Status
 --------------
 
-Work in progress. The following features need to be added or wired up.
+Created with Unity 5.3.6f1. 
+
+This is a work in progress. The following features need to be added or wired up.
 
 * Menu animations
 * Audio mixer and audio control menu
@@ -55,15 +57,18 @@ jam updates.
 * JSON.NET for Unity. Enhanced version of Newtonsoft.Json with good compatibility and excellent support. https://www.assetstore.unity3d.com/en/#!/content/11347
 * Rewired. First class input support. Your controller will thank you. https://www.assetstore.unity3d.com/en/#!/content/21676
 
-Installation
-------------
+Usage
+-----
+
+### Installation
 
 Unity and vendor assets want to control their own line endings.
-This mean turning off autocrlf is the path of least resistance.
+This mean that turning off git's autocrlf is the path of least resistance.
 
-### Clone Jammer
+#### Clone Jammer
 
     cd ~/workspace
+    # NOTE the "-n" to clone but not checkout
     git clone git@github.com/robertwahler/jammer.git my_game -n
     cd my_game 
     git config core.autocrlf false

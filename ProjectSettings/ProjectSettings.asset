@@ -342,7 +342,7 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols:
-    1: SDD_DEBUG;SDD_DEBUG_OVERLAY;SDD_LOG_DEBUG
+    1: SDD_DEBUG;SDD_DEBUG_OVERLAY;SDD_LOG_DEBUG;SDD_LOG_VERBOSE
   metroPackageName: EventManager
   metroPackageVersion: 
   metroCertificatePath: 
