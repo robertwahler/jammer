@@ -29,6 +29,7 @@ Features
   builds.  Rebuild via `thor compile:base`
 * Player prefs alternative that serializes to JSON in a predictable location on all platforms
 * On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
+* In-game debug console for logging and input. Use `KeyCode.BackQuote` to activate.
 
 Assets
 ------
@@ -45,6 +46,7 @@ your source.
 * ConsoleE a free replacement Unity debug trace console. https://www.assetstore.unity3d.com/en/#!/content/42381
 * Json.Net.Unity3D a Unity friendly fork of Newtonsoft.Json. https://github.com/SaladLab/Json.Net.Unity3D
 * DOTween for fire and forget performant tweening. https://www.assetstore.unity3d.com/en/#!/content/27676
+* UnityIngameDebugConsole for in logging and console input. https://github.com/yasirkula/UnityIngameDebugConsole
 
 ### Post Jam Assets, Not Included in Template
 

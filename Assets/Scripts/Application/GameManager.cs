@@ -107,6 +107,12 @@ namespace Jammer {
       #if SDD_LOG_VERBOSE
         LogLevels |= LogLevels.Verbose;
       #endif
+
+      #if SDD_CONSOLE
+        // log debug console from resources
+        CreatePrefab(name: "Console");
+      #endif
+
     }
 
     protected void OnEnable() {
