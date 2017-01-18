@@ -56,10 +56,16 @@ namespace Jammer.Console {
       if (Input.GetKeyDown(toggleKey)) {
         Log.Debug(string.Format("ConsoleState.HandleInput() State {0}, toggleKey {1} pressed", State, toggleKey));
 
+        // clear input of hotkey, is there a better way to eat the hotkey?
+        commandInputField.text = Regex.Replace(commandInputField.text, "`", "");
+
         switch(State) {
 
           case ConsoleState.Inactive:
             OnSetVisible();
+            // focus input
+            commandInputField.Select();
+            commandInputField.ActivateInputField();
             // kludge, fix this
             logWindowTR.anchoredPosition = Vector3.zero;
             State = ConsoleState.Active;
@@ -67,6 +73,9 @@ namespace Jammer.Console {
 
           case ConsoleState.Hidden:
             OnSetVisible();
+            // focus input
+            commandInputField.Select();
+            commandInputField.ActivateInputField();
             // kludge, fix this
             logWindowTR.anchoredPosition = Vector3.zero;
             State = ConsoleState.Active;
@@ -79,6 +88,9 @@ namespace Jammer.Console {
 
           case ConsoleState.Minimized:
             OnSetVisible();
+            // focus input
+            commandInputField.Select();
+            commandInputField.ActivateInputField();
             // kludge, fix this
             logWindowTR.anchoredPosition = Vector3.zero;
             State = ConsoleState.Active;
@@ -87,6 +99,8 @@ namespace Jammer.Console {
         }
       }
     }
+
+    //protected virtual void
 
   }
 }
