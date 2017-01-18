@@ -50,13 +50,13 @@ module BasicUnity
       # parse editor sln first pass
       lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp-Editor-firstpass.csproj"))
 
-      # parse editor sln
-      lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp-Editor.csproj"))
+      # parse editor sln, but skip the source, we manage that with a 'recurse' since it changes frequently
+      lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp-Editor.csproj"), options = {:skip_source => true})
 
       # main sln is done by hand so this script only needs to be run when vendor code changes
       # lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp.csproj"))
       #lines << "-recurse:Assets/Editor/*.cs"
-      #lines << "-recurse:Assets/Test/*.cs"
+      lines << "-recurse:Assets/Test/*.cs"
       lines << "-recurse:Assets/Examples/*.cs" if File.exists?(File.join(ASSETS_FOLDER, "Examples"))
       lines << "-recurse:Assets/Scripts/*.cs"
 
@@ -98,19 +98,21 @@ module BasicUnity
 
     # parse XML solution files and return an array of lines to include in an
     # mcs response file
-    def parse_csproj(filename)
+    def parse_csproj(filename, options={})
       lines = []
 
       if File.exists?(filename)
         File.open(filename, "r") do |file|
           doc = Nokogiri::XML(file)
 
-          # source files
-          doc.css('Compile').each do |element|
-            name = element.attr("Include")
-            name = name.gsub(/\\/, "/") if posix?
-            say_status "SOURCE", name, :green
-            lines << "'#{name}'"
+          unless options[:skip_source]
+            # source files
+            doc.css('Compile').each do |element|
+              name = element.attr("Include")
+              name = name.gsub(/\\/, "/") if posix?
+              say_status "SOURCE", name, :green
+              lines << "'#{name}'"
+            end
           end
 
           # explicitly hinted dll paths
