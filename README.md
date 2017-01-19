@@ -166,7 +166,15 @@ Syntax checking with Vim
 
 Do you use Vim instead of MonoDevelop/Visual Studio? 
 
-Install https://github.com/neomake/neomake and add this to your .vimrc
+Omnisharp for Vim is good, https://github.com/OmniSharp/omnisharp-vim but it
+has a few issues on macOS. I disable Omnisharp's syntax checking and use Neomake
+and self parsed solution files.
+
+### Install Neomake
+
+https://github.com/neomake/neomake 
+
+Add this to your .vimrc
 
     let g:neomake_cs_mcs_maker = {
       \ 'args': ['@.mcs'],
