@@ -47,7 +47,7 @@ Assets
 
 Several free and open source vendor assets are included. Most game types will
 benefit from all of these vendor assets. None are required and can be removed
-be deleting the appropriate folder from
+by deleting the appropriate folder from
 [./Assets/Plugins/Vendor](Assets/Plugins/Vendor). All can be redistributed with
 your source.
 

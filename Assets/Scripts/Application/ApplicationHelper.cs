@@ -1,4 +1,6 @@
 using UnityEngine;
+using Newtonsoft.Json;
+using SDD;
 
 namespace Jammer {
 
@@ -53,6 +55,28 @@ namespace Jammer {
     /// </summary>
     public static string AppAssets = System.IO.Path.Combine(AppPath, "Assets/Resources");
 
+
+    public static Version Version {
+      get {
+        if (version == null) {
+          try {
+          TextAsset textData = (TextAsset) Resources.Load("Version", typeof(TextAsset));
+          if (textData != null) {
+            version = JsonConvert.DeserializeObject<Version>(textData.text);
+          }
+          else {
+            Log.Error(string.Format("GameManager.Version failed to load Version.txt from resources"));
+          }
+
+          }
+          catch (System.Exception e) {
+            Log.Error(string.Format("GameManager.Version failed with {0}", e.ToString()));
+          }
+        }
+        return version;
+      }
+    }
+    private static Version version;
   }
 }
 

@@ -33,6 +33,7 @@ namespace Jammer {
     /// </summary>
     public bool Focused { get; set; }
 
+
     /// <summary>
     /// Game finite state machine
     /// </summary>
