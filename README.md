@@ -5,10 +5,18 @@ Unity game jam template with just enough structure to ease moving past the jam p
 
 Take a look at the feature list to see if this project will work for you.
 
-Screenshot
+Screenshots
 -----------
 
+### Menu
+
 ![Jammer Start](doc/screenshots/JammerStart.png)
+
+### Command Line Tasks
+
+![Jammer Start](doc/screenshots/JammerCLI.png)
+
+See [./doc/screenshots](doc/screenshots/) for more.
 
 Project Status
 --------------
