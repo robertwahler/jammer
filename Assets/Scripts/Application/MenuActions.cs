@@ -20,12 +20,32 @@ namespace Jammer {
     // main level
     const string MAINSCENE = "Level1";
 
+    private bool initialized = false;
+
     protected override void OnEnable() {
       Log.Debug(string.Format("MenuActions.OnEnable()"));
       base.OnEnable();
 
-      // set value without firing an event
-      toggleMuteAudio.SetValue(AudioManager.Instance.MuteAudio);
+      // first attempt, dependents may not be ready
+      Initialize();
+    }
+
+    protected virtual IEnumerator Start() {
+      if (!initialized) {
+        while (AudioManager.Instance == null) {
+          yield return null;
+        }
+        Initialize();
+      }
+    }
+
+    protected virtual void Initialize() {
+      if ((!initialized) && (AudioManager.Instance != null)) {
+        Log.Debug(string.Format("MenuActions.Initialize()"));
+        // set value without firing an event
+        toggleMuteAudio.SetValue(AudioManager.Instance.MuteAudio);
+        initialized = true;
+      }
     }
 
     public override void SubscribeEvents() {
@@ -71,7 +91,6 @@ namespace Jammer {
     /// </summary>
     public void OnMuteAudio(Toggle sender) {
       Log.Debug(string.Format("MenuActions.OnMuteAudio(sender: {0}), sender.isOn {1}", sender, sender.isOn));
-      Debug.Log(AudioManager.Instance.MuteAudio);
 
       Events.Raise(new AudioSettingsCommandEvent() { Handled=false, MuteAudio=sender.isOn });
     }
