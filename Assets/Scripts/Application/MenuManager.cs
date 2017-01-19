@@ -44,6 +44,14 @@ namespace Jammer {
     /// </summary>
     public string CurrentScene { get; set; }
 
+    protected override void OnEnable() {
+      Log.Debug(string.Format("MenuManager.OnEnable()"));
+      base.OnEnable();
+
+      // always turn off design time menus
+      State = MenuState.Closed;
+    }
+
     public override void SubscribeEvents() {
       Log.Debug(string.Format("MenuManager.SubscribeEvents()"));
 
@@ -117,9 +125,10 @@ namespace Jammer {
         }
 
         CurrentScene = e.SceneName;
-
-        // notify event
-        Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=CurrentScene, Mode=e.Mode });
+      }
+      else {
+        Log.Debug(string.Format("MenuManager.OnLoadSceneCommand({0}) scene loaded", e));
+        // do nothing
       }
     }
 

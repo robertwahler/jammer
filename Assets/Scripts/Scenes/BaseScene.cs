@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,15 @@ namespace Jammer.Scenes {
         prefab.name = "GameManager";
         UnityEngine.Object.Instantiate(prefab);
       }
+    }
+
+    protected override void OnEnable() {
+      Log.Debug(string.Format("BaseScene.OnEnable()"));
+      base.OnEnable();
+
+      // notify event
+      Scene scene = SceneManager.GetActiveScene();
+      Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=scene.name });
     }
 
     public override void SubscribeEvents() {
