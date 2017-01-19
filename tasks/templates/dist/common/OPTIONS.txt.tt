@@ -1,0 +1,96 @@
+Command Line Options
+====================
+
+Custom Options
+--------------
+
+This game has the following custom or modified command line options:
+
+### --settings-folder <folder name>
+
+Settings are stored in JSON format in platform specific folder locations.
+Override the folder with this option. The path can be relative or absolute.
+
+Unity Options
+-------------
+
+All Unity games have the following command line options, this is a partial
+list. The full list is available here, see "Unity Standalone Player":
+
+https://docs.unity3d.com/Manual/CommandLineArguments.html
+
+### -adapter N (Windows only)
+
+Allows the game to run full-screen on another display. The N maps to a Direct3D
+display adaptor. In most cases there is a one-to-one relationship between
+adapters and video cards. On cards that support multi-head (they can drive
+multiple monitors from a single card) each “head” may be its own adapter.
+
+### -force-d3d9 (Windows only)
+
+Make the game use Direct3D 9 for rendering. Normally the graphics API depends
+on player settings (typically defaults to D3D11).
+
+### -force-d3d9-ref (Windows only)
+
+Make the game run using Direct3D’s “Reference” software renderer. The DirectX
+SDK has to be installed for this to work. This is mostly useful for building
+automated test suites, where you want to ensure rendering is exactly the same
+no matter what graphics card is being used.
+
+### -force-d3d11 (Windows only)
+
+Make the game use Direct3D 11 for rendering.
+
+### -force-d3d11-no-singlethreaded
+
+Force DirectX 11.0 to be created without D3D11_CREATE_DEVICE_SINGLETHREADED flag.
+
+### -force-glcore (Windows only)
+
+Make the editor use OpenGL core profile for rendering. The editor tries to use
+on the best OpenGL version available and all OpenGL extensions exposed by the
+OpenGL drivers. If the platform isn’t supported, Direct3D is used.
+
+### -force-glcoreXY (Windows only)
+
+Similar to -force-glcore but request a specific OpenGL context version.
+Accepted values for XY: 32, 33, 40, 41, 42, 43, 44 or 45.
+
+### -force-clamped (Windows only)
+
+Used together with -force-glcoreXY, but it prevents checking for additional
+OpenGL extensions allowing to run between platforms with the same code paths
+
+### -popupwindow
+
+The window will be created as a pop-up window (without a frame).
+
+### -window-mode mode (Windows only)
+
+Overrides the default behavior of the Fullscreen Mode setting. Possible options
+are: exclusive, borderless.
+
+### -screen-fullscreen
+
+Overrides the default fullscreen state. This must be 0 or 1.
+
+### -screen-height
+
+Overrides the default screen height. This must be an integer from a supported
+resolution.
+
+### -screen-width
+
+Overrides the default screen width. This must be an integer from a supported
+resolution.
+
+### -screen-quality
+
+Overrides the default screen quality. Example usage would be:
+
+    /path/to/myGame -screen-quality Beautiful
+
+### -show-screen-selector
+
+Forces the screen selector dialog to be shown

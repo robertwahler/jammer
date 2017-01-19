@@ -1,0 +1,53 @@
+Settings
+========
+
+This Unity game does not use the standard Unity PlayerPrefs system although the
+Unity player will store some settings in the standard locations regardless,
+i.e.  Screen resolution and quality. Documentation can be found here.
+http://docs.unity3d.com/ScriptReference/PlayerPrefs.html
+
+Configuration and Saves
+-----------------------
+
+All game saves and custom game configuration settings are located in a platform
+specific folder in standard JSON format. Please note that some cloud save data
+is controlled by platform tools. i.e. Steam Cloud manages the ./Data folder
+where JSON game saves are stored.
+
+### Windows
+
+    ~/AppData/LocalLow/<%= read_company_name %>/<%= read_product_name %>/
+
+### macOS
+
+    ~/Library/Application Support/<%= read_company_name %>/<%= read_product_name %>/
+
+### Linux
+
+    ~/.config/unity3d/<%= read_company_name %>/<%= read_product_name %>/
+
+
+Video Settings
+------------
+
+The Unity player saves video settings in the following fixed locations by
+platform.
+
+NOTE: You can force the stock Unity video settings dialog to show at startup by
+holding down the "shift" key on Windows or "alt" key on macOS/Linux.
+
+### Windows (registry Key)
+
+   HKCU/Software/<%= read_company_name %>/<%= read_product_name %>
+
+### macOS (plist format)
+
+    ~/Library/Preferences/unity.<%= read_company_name %>.<%= read_product_name %>.plist
+
+The prefs file can be displayed via the macOS `defaults` command
+
+    defaults read ~/Library/Preferences/unity.<%= read_company_name %>.<%= read_product_name %>.plist
+
+### Linux
+
+    ~/.config/unity3d/<%= read_company_name %>/<%= read_product_name %>

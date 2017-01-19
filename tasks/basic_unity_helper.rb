@@ -9,6 +9,7 @@ module BasicUnity
 
   ROOT_FOLDER = File.expand_path(File.join(File.dirname(__FILE__), ".."))
   ASSETS_FOLDER = File.join(ROOT_FOLDER, "Assets")
+  RESOURCES_FOLDER = File.join(ASSETS_FOLDER, "Resources")
   DOC_FOLDER = File.join(ROOT_FOLDER, "doc")
   PROJECT_FOLDER = File.join(ROOT_FOLDER, "ProjectSettings")
   VENDOR_FOLDER = File.join(ASSETS_FOLDER, "Plugins", "Vendor")
@@ -96,6 +97,26 @@ module BasicUnity
         os
       end
     end
+
+    # @return [String] the default stage
+    def default_stage
+      "production"
+    end
+
+    # @return [String] the product name, override Unity with a ".product" file
+    def default_product
+      filename = File.join(ROOT_FOLDER, ".product")
+      contents = nil
+
+      if File.exists?(filename)
+        File.open(filename, "r") do |f|
+          contents = f.read.strip
+        end
+      end
+
+      return contents.nil? ? read_product_name : contents
+    end
+
 
     def butler_binary
       if mac?
