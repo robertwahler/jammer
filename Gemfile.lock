@@ -1,7 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    json (2.0.1)
     mini_portile2 (2.1.0)
+    neatjson (0.8.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -13,6 +15,8 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (>= 1.0.14)
+  json
+  neatjson
   nokogiri (>= 1.6.1)
   thor (>= 0.16.0)
 

@@ -1,6 +1,9 @@
 require 'pathname'
 require 'rbconfig'
 require 'fileutils'
+require 'json'
+require 'neatjson'
+
 
 module BasicUnity
 
@@ -15,6 +18,11 @@ module BasicUnity
   STAGING_FOLDER = File.join(TMP_FOLDER, 'staging')
   TASKS_FOLDER = File.join(ROOT_FOLDER, 'tasks')
   LIBRARY_FOLDER = File.join(ROOT_FOLDER, 'Library')
+
+  PRODUCT_IDENTIFIER_BASE = "com.example"
+  PRODUCT_IDENTIFIER_DEFAULT = "com.example.jammer"
+
+  JSON_OPTIONS = { :aligned => true, :around_colon => 1 }
 
   module BasicUnityHelper
 
@@ -153,6 +161,26 @@ module BasicUnity
       end
     end
 
+    # @return [String] company full name from project settings
+    def read_company_name
+      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        contents.match(/companyName: (.*)$/)
+        $1
+      end
+    end
+
+    # @return [String] product full name from project settings
+    def read_product_name
+      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        contents.match(/productName: (.*)$/)
+        $1
+      end
+    end
+
     # @return [String] product indentifier from project settings
     def read_product_identifier
       version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
@@ -161,6 +189,123 @@ module BasicUnity
         contents.match(/bundleIdentifier: (.*)$/)
         $1
       end
+    end
+
+    # @return [String] the version in #.#.# format
+    def read_version_number(version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+        json["version"]
+      end
+    end
+
+    # @return [String] the code in # format
+    def read_version_code(version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+        json["code"]
+      end
+    end
+
+    # @return [String] the build in # format
+    def read_version_build(version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+        json["build"]
+      end
+    end
+
+    # @return [String] the unityVersion
+    def read_unity_version(version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+        json["unity"]
+      end
+    end
+
+    # @return [String] the entire version formatted string
+    def read_version_string(version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+      "#{read_version_number(version_info_file)}.#{read_version_code(version_info_file)}.#{read_version_build(version_info_file)}"
+    end
+
+    # write version number directly to Version.txt
+    def write_version_number(number, version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+
+      json = ""
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+      end
+
+      json["version"] = number
+      File.open(version_info_file, 'w') { |file| file.write(JSON.neat_generate(json, JSON_OPTIONS)) }
+    end
+
+    # write version number directly to ProjectSettings.asset
+    def write_project_number(number, version_info_file=nil)
+      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset") unless version_info_file
+      contents = ""
+      File.open(version_info_file, "r") do |f|
+        contents = f.read
+      end
+
+      contents = contents.gsub(/bundleVersion: [\d]+\.[\d]+\.[\d]+$/, "bundleVersion: #{number}")
+      File.open(version_info_file, 'w') { |file| file.write(contents) }
+    end
+
+    # write build code number directly to Version.txt
+    def write_version_code(code, version_info_file=nil)
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+
+      json = ""
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+      end
+
+      json["code"] = code
+      File.open(version_info_file, 'w') { |file| file.write(JSON.neat_generate(json, JSON_OPTIONS)) }
+    end
+
+    # write build code number directly to ProjectSettings.asset
+    def write_project_code(code)
+      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      contents = ""
+      File.open(version_info_file, "r") do |f|
+        contents = f.read
+      end
+
+      # Android
+      contents = contents.gsub(/AndroidBundleVersionCode: [\d]+$/, "AndroidBundleVersionCode: #{code}")
+
+      # iOS
+      contents = contents.gsub(/iPhoneBuildNumber: [\d]+$/, "iPhoneBuildNumber: #{code}")
+      File.open(version_info_file, 'w') { |file| file.write(contents) }
+    end
+
+    # write build build number directly to Version.txt
+    def write_version_build(sha, version_info_file=nil)
+      sha = generate_build_number unless sha
+      version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
+
+      json = ""
+      File.open(version_info_file, "r") do |f|
+        contents = f.read.strip
+        json = JSON.parse(contents)
+      end
+
+      json["build"] = sha
+      File.open(version_info_file, 'w') { |file| file.write(JSON.neat_generate(json, JSON_OPTIONS)) }
     end
 
     def generate_build_number
