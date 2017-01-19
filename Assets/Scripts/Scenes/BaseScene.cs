@@ -49,6 +49,14 @@ namespace Jammer.Scenes {
     }
 
     protected virtual void HandleInput() {
+      if (Input.GetKeyDown(KeyCode.Escape)) {
+        Log.Debug(string.Format("BaseScene.HandleInput() KeyCode.Escape"));
+
+        // toggle main menu, unless we are on the start scene
+        if (ActiveScene.name != ApplicationConstants.StartScene) {
+          EventManager.Instance.Raise(new MainMenuCommandEvent(){ Handled=false });
+        }
+      }
     }
 
   }
