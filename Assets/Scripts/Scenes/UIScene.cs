@@ -24,6 +24,11 @@ namespace Jammer.Scenes {
     protected void Start() {
       Log.Debug(string.Format("UIScene.Start()"));
 
+      if (ActiveScene.name == ApplicationConstants.UIScene) {
+        // we are design time editing, show the menus
+        Events.Raise(new MainMenuCommandEvent() { Handled=false, State=MenuState.Open });
+      }
+
     }
 
   }

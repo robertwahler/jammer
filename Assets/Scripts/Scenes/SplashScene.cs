@@ -57,8 +57,8 @@ namespace Jammer.Scenes {
         yield return null;
       }
 
-      // load the main game scene, it handles the GameManager, Menus, and loading levels
-      UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName: ApplicationConstants.MainScene, mode: UnityEngine.SceneManagement.LoadSceneMode.Single);
+      // load the start game scene, it handles the GameManager, Menus, and loading levels
+      UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName: ApplicationConstants.StartScene, mode: UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
   }
 }

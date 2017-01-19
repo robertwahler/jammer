@@ -17,9 +17,6 @@ namespace Jammer {
     /// </summary>
     public Toggle toggleMuteAudio;
 
-    // main level
-    const string MAINSCENE = "Level1";
-
     private bool initialized = false;
 
     protected override void OnEnable() {
@@ -31,6 +28,8 @@ namespace Jammer {
     }
 
     protected virtual IEnumerator Start() {
+      Log.Debug(string.Format("MenuActions.Start()"));
+
       if (!initialized) {
         while (AudioManager.Instance == null) {
           yield return null;
@@ -74,7 +73,7 @@ namespace Jammer {
     public void OnPlay() {
       Log.Debug(string.Format("MenuActions.OnPlay() this={0}", this));
 
-      Events.Raise(new LoadSceneCommandEvent() { Handled=false, SceneName=MAINSCENE, Mode=LoadSceneMode.Single });
+      Events.Raise(new LoadSceneCommandEvent() { Handled=false, SceneName=ApplicationConstants.MainScene, Mode=LoadSceneMode.Single });
     }
 
     /// <summary>
