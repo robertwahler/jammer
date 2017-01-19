@@ -13,9 +13,6 @@ namespace Jammer.Scenes {
     /// </summary>
     public CanvasGroup canvasGroupLogo;
 
-    // scene to load after splash shown
-    const string MAINSCENE = "Game";
-
     public override void Awake() {
       Log.Debug(string.Format("SplashScene.Awake()"));
 
@@ -61,7 +58,7 @@ namespace Jammer.Scenes {
       }
 
       // load the main game scene, it handles the GameManager, Menus, and loading levels
-      UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName: MAINSCENE, mode: UnityEngine.SceneManagement.LoadSceneMode.Single);
+      UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName: ApplicationConstants.MainScene, mode: UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
   }
 }

@@ -10,6 +10,12 @@ namespace Jammer.Scenes {
 
   public class BaseScene : EventHandler {
 
+    public Scene ActiveScene {
+      get {
+        return SceneManager.GetActiveScene();
+      }
+    }
+
     public virtual void Awake() {
       Log.Debug(string.Format("BaseScene.Awake()"));
 
@@ -27,8 +33,7 @@ namespace Jammer.Scenes {
       base.OnEnable();
 
       // notify event
-      Scene scene = SceneManager.GetActiveScene();
-      Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=scene.name });
+      Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=ActiveScene.name });
     }
 
     public override void SubscribeEvents() {

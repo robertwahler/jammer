@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Splash.unity
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Start.unity
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
   - enabled: 1
     path: Assets/Scenes/Level1.unity

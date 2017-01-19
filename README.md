@@ -82,6 +82,30 @@ This mean that turning off git's autocrlf is the path of least resistance.
 * Completely replace the contents of scene file Level1.unity with your game
 * Delete the ./Examples folder
 
+Scenes
+------
+
+NOTE: You can play test from any scene while in the IDE. UI and managers will
+be loaded on awake regardless of which scene is currently being edited.
+
+### Splash
+
+Shows game banner logo at start, loads
+
+### Start
+
+An empty scene that loads the UI on start
+
+### UI
+
+The menu system. It is in its own scene intead of a prefab so that the menus
+can themselves, be contructed of prefabs. It is loaded dynamically when needed
+and stays in memory for the entire session.
+
+### Level1
+
+Demo game/level scene. Replace its contents with your game
+
 JSON Serialization
 ------------------
 

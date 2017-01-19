@@ -118,6 +118,10 @@ namespace Jammer {
     protected void OnEnable() {
       Log.Verbose(string.Format("GameManager.OnEnable() this={0}", this));
 
+      if (MenuManager.Instance == null) {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName: ApplicationConstants.UIScene, mode: UnityEngine.SceneManagement.LoadSceneMode.Additive);
+      }
+
       SubscribeEvents();
       State = GameState.Started;
     }
