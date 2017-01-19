@@ -24,7 +24,8 @@ Features
 --------
 
 * Loosely coupled, type safe event system
-* Single scene or multi-scene game support. Game can be started from any scene to speed development testing.
+* Unit testing of custom framework for both straight-up C# and Unity Monobehaviours
+* Single scene or multi-scene game support. Play testing can be started from any scene to speed development.
 * Lighting fast syntax checking for Vim users
 * Optional Ruby scripting framework to make CLI tasks easy to create and
   maintain.  See [./tasks/README.md](tasks/README.md)
@@ -35,6 +36,7 @@ Features
 * Player prefs alternative that serializes to JSON in a predictable location on all platforms
 * On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
 * In-game debug console for logging and input. Use `KeyCode.BackQuote` to activate.
+* Itch.io Butler package helpers for macOS, Windows, and Linux. See See [./tasks/itch.rb](tasks/itch.rb)
 
 Assets
 ------

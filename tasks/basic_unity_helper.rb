@@ -117,15 +117,6 @@ module BasicUnity
       return contents.nil? ? read_product_name : contents
     end
 
-
-    def butler_binary
-      if mac?
-        File.expand_path("~/Library/Application\ Support/itch/bin/butler")
-      else
-        "butler.exe"
-      end
-    end
-
     def unity_binary
       binary_folder = unity_binary_folder
 
