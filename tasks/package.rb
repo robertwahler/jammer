@@ -87,7 +87,19 @@ module BasicUnity
         remove_file(destination)
         run "7za a -mx9 #{destination} #{source}"
       end
+    end
 
+    desc "source", "create source code distribution archive"
+    def source
+      set_instance_variables
+
+      # create the archive file
+      source = ROOT_FOLDER
+      # read version from resources
+      version = read_version_string
+      destination = "#{PKG_FOLDER}/#{@product}.#{version}.source.zip"
+      remove_file(destination)
+      run "7za a -mx9 -xr!.git -xr!pkg/ -xr!build/ -xr!tmp/ -xr!Tmp/ -xr!Library/ -xr!obj/ -xr!Temp/  -xr!Tmp.meta -xr!.DS_Store #{destination} #{source}"
     end
 
     private
