@@ -151,6 +151,7 @@ GameObject:
   - 224: {fileID: 332466105}
   - 223: {fileID: 332466108}
   - 114: {fileID: 332466107}
+  - 225: {fileID: 332466109}
   - 114: {fileID: 332466106}
   m_Layer: 5
   m_Name: Canvas
@@ -234,6 +235,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &332466109
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332466104}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &344177286
 Prefab:
   m_ObjectHideFlags: 0
@@ -335,11 +347,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22476012, guid: fd9f067bf0e0a426da8651c500fb2ccd, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 196.58836
+      value: 202.40094
       objectReference: {fileID: 0}
     - target: {fileID: 22476012, guid: fd9f067bf0e0a426da8651c500fb2ccd, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -187.76056
+      value: -180.86722
       objectReference: {fileID: 0}
     - target: {fileID: 22476012, guid: fd9f067bf0e0a426da8651c500fb2ccd, type: 2}
       propertyPath: m_SizeDelta.x
@@ -928,11 +940,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22476012, guid: fd9f067bf0e0a426da8651c500fb2ccd, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 196.58836
+      value: 202.40094
       objectReference: {fileID: 0}
     - target: {fileID: 22476012, guid: fd9f067bf0e0a426da8651c500fb2ccd, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -247.76056
+      value: -240.86722
       objectReference: {fileID: 0}
     - target: {fileID: 22476012, guid: fd9f067bf0e0a426da8651c500fb2ccd, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1047,7 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.66, g: 0.66, b: 0.66, a: 0.884}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1244,11 +1256,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22411312, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 196.58836
+      value: 202.40094
       objectReference: {fileID: 0}
     - target: {fileID: 22411312, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -217.76056
+      value: -210.86722
       objectReference: {fileID: 0}
     - target: {fileID: 22411312, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1293,6 +1305,14 @@ Prefab:
     - target: {fileID: 11416332, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
       propertyPath: m_Text
       value: Mute Audio
+      objectReference: {fileID: 0}
+    - target: {fileID: 22418672, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22451284, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 753af7128ef1345f4b27fe702235b385, type: 2}
