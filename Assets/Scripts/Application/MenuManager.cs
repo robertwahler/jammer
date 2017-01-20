@@ -1,5 +1,8 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using DG.Tweening;
 using SDD;
 using SDD.Events;
 
@@ -20,6 +23,19 @@ namespace Jammer {
     public GameObject menuContainer;
 
     /// <summary>
+    /// CanvasGroup convenience property. Lazy loaded. Cached.
+    /// </summary>
+    public CanvasGroup CanvasGroup {
+      get {
+        if (canvasGroup == null) {
+          canvasGroup = menuContainer.GetComponent<CanvasGroup>();
+        }
+        return canvasGroup;
+      }
+    }
+    private CanvasGroup canvasGroup;
+
+    /// <summary>
     /// There should be just one manager. If not found return null
     /// </summary>
     public static MenuManager Instance {
@@ -28,7 +44,6 @@ namespace Jammer {
           Log.Debug(string.Format("MenuManager.Instance.get looking for object"));
           instance = (MenuManager) GameObject.FindObjectOfType(typeof(MenuManager));
         }
-
         return instance;
       }
     }
@@ -49,7 +64,7 @@ namespace Jammer {
       base.OnEnable();
 
       // always turn off design time menus
-      State = MenuState.Closed;
+      menuContainer.SetActive(false);
     }
 
     public override void SubscribeEvents() {
@@ -147,11 +162,11 @@ namespace Jammer {
       switch(value) {
 
         case MenuState.Closed:
-          menuContainer.SetActive(false);
+          StartCoroutine(ToggleMenu(on: false));
           break;
 
         case MenuState.Open:
-          menuContainer.SetActive(true);
+          StartCoroutine(ToggleMenu(on: true));
           break;
 
         default:
@@ -161,6 +176,26 @@ namespace Jammer {
 
       // notify event
       Events.Raise(new MainMenuCommandEvent() { Handled=true, State=State });
+    }
+
+    private IEnumerator ToggleMenu(bool on) {
+      Log.Verbose(string.Format("MenuManager.ToggleMenus(on: {0})", on));
+
+      float duration = 0.5f;
+
+      if (on) {
+        // alpha off immediately
+        CanvasGroup.alpha = 0f;
+        // enable container
+        menuContainer.SetActive(true);
+        // fade on over duration
+        yield return CanvasGroup.DOFade(1f, duration: duration).WaitForCompletion();
+      }
+      else {
+        // fade off over duration,
+        yield return CanvasGroup.DOFade(0f, duration: duration).WaitForCompletion();
+        menuContainer.SetActive(false);
+      }
     }
 
   }

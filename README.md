@@ -25,14 +25,13 @@ Created with Unity 5.3.6f1.
 
 This is a work in progress. The following features need to be added or wired up.
 
-* Menu animations
-* Audio mixer 
+* Audio mixer. (Audio on/off currently implemented)
 
 Features
 --------
 
 * Loosely coupled, type safe event system
-* Unit testing of custom framework for both straight-up C# and Unity Monobehaviours
+* Unit testing of custom framework for both straight-up C# and Unity MonoBehaviours
 * Single scene or multi-scene game support. Play testing can be started from any scene to speed development.
 * Lighting fast syntax checking for Vim users
 * Optional Ruby scripting framework to make CLI tasks easy to create and
@@ -45,6 +44,7 @@ Features
 * On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
 * In-game debug console for logging and input. Use `KeyCode.BackQuote` to activate.
 * Itch.io Butler package helpers for macOS, Windows, and Linux. See See [./tasks/itch.rb](tasks/itch.rb)
+* Code based tweening used when appropriate as an alternative to Mechcanim for maintainability.
 
 Assets
 ------
@@ -117,8 +117,8 @@ An empty scene that loads the UI on start
 
 ### UI
 
-The menu system. It is in its own scene intead of a prefab so that the menus
-can themselves, be contructed of prefabs. It is loaded dynamically when needed
+The menu system. It is in its own scene instead of a prefab so that the menus
+can themselves, be constructed of prefabs. It is loaded dynamically when needed
 and stays in memory for the entire session.
 
 ### Level1
