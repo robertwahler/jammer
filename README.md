@@ -65,7 +65,7 @@ your source.
 * ConsoleE a free replacement Unity debug trace console. https://www.assetstore.unity3d.com/en/#!/content/42381
 * Json.Net.Unity3D a Unity friendly fork of Newtonsoft.Json. https://github.com/SaladLab/Json.Net.Unity3D
 * DOTween for fire and forget performant tweening. https://www.assetstore.unity3d.com/en/#!/content/27676
-* UnityIngameDebugConsole for in logging and console input. https://github.com/yasirkula/UnityIngameDebugConsole
+* UnityIngameDebugConsole for in game logging and console input. https://github.com/yasirkula/UnityIngameDebugConsole
 
 ### Post Jam Assets, Not Included in Template
 
@@ -109,11 +109,11 @@ be loaded on awake regardless of which scene is currently being edited.
 
 ### Splash
 
-Shows game banner logo at start, loads
+Shows game banner logo at start, automatically loads the start scene
 
 ### Start
 
-An empty scene that loads the UI on start
+An empty scene that acts the the game's home screen, automatically loads the UI
 
 ### UI
 
@@ -164,7 +164,10 @@ Preprocessor Directives
 
 Compiler defines conditionally control compilation.
 
-To use, add then to Unity's `Player Settings, Other Settings, Scripting Define Symbols`
+To use, add then to Unity's `Player Settings, Other Settings, Scripting Define Symbols`. 
+
+The letters `[D]` denote strings shown at runtime with the games version.  This
+helps determine what defines were enabled for any given build.
 
 #### SDD_DEBUG [D]
 
