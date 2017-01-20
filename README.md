@@ -125,6 +125,16 @@ and stays in memory for the entire session.
 
 Demo game/level scene. Replace its contents with your game
 
+### Template
+
+Blank scene not part of the build settings
+
+* Starting template for new scenes
+* Make a copy in the ./Assets/tmp folder (ignored by git) for editing prefabs
+  without scene churn. i.e. The audio engineer can work with audio system
+  prefab with runtime access to full game.  Apply prefab changes and toss the
+  scene.
+
 JSON Serialization
 ------------------
 
@@ -157,7 +167,6 @@ serialization data.
 #### Linux
 
     ~/.config/unity3d/<%= company_name %>/<%= product_name %>/
-
 
 Preprocessor Directives
 -----------------------
