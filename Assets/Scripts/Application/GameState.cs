@@ -1,7 +1,7 @@
 namespace Jammer {
 
   /// <summary>
-  /// Game state used as a finite state engine
+  /// Game state used to implement a simple FSM
   /// </summary>
   public enum GameState {
 
@@ -24,10 +24,5 @@ namespace Jammer {
     /// Ready for user input
     /// </summary>
     Ready = 4000,
-
-    /// <summary>
-    /// Game over doesn't fire NoMoreMoves first
-    /// </summary>
-    GameOver = 5000,
   }
 }

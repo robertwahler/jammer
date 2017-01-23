@@ -47,12 +47,14 @@ namespace Jammer {
     private LogLevels logLevels = (LogLevels.Debug | LogLevels.Info | LogLevels.Warning | LogLevels.Error);
 
     /// <summary>
-    /// ApplicationManager.Awake() should be the first Monobehaviour Awake() to fire.
-    /// Initialize happens on Awake only for new Singletons.
+    /// Initialize happens on Awake for new Singletons
     /// </summary>
     protected override void Initialize() {
       Log.Verbose(string.Format("GameManager.Initialize() ID={0}", GetInstanceID()));
       base.Initialize();
+
+      // signal loading state
+      State = GameState.Loading;
 
       // App starts focused
       Focused = true;
@@ -124,6 +126,8 @@ namespace Jammer {
       }
 
       SubscribeEvents();
+
+      // signal game started
       State = GameState.Started;
     }
 
@@ -270,16 +274,12 @@ namespace Jammer {
 
       switch(state) {
 
-        // user initiated new game, set in Game.Reset()
+        // TODO: add handler for user initiated new game
         case GameState.New:
           break;
 
-        // After new and after resets and loading
+        // TODO: add handler
         case GameState.Ready:
-          break;
-
-        // Game over
-        case GameState.GameOver:
           break;
 
       }
