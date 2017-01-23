@@ -9,6 +9,8 @@ using DG.Tweening;
 using SDD;
 using SDD.Events;
 
+using Jammer.Scenes;
+
 namespace Jammer {
 
   /// <summary>
@@ -132,19 +134,34 @@ namespace Jammer {
     }
 
     protected virtual void OnDisable(){
-      Log.Verbose(string.Format("ApplicationManager.OnDisable()"));
+      Log.Verbose(string.Format("GameManager.OnDisable()"));
 
       UnsubscribeEvents();
     }
 
     protected virtual void SubscribeEvents() {
-      Log.Verbose(string.Format("ApplicationManager.SubscribeEvents()"));
+      Log.Verbose(string.Format("GameManager.SubscribeEvents()"));
 
+      EventManager.Instance.AddListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
     }
 
     protected virtual void UnsubscribeEvents() {
-      Log.Verbose(string.Format("ApplicationManager.UnsubscribeEvents()"));
+      Log.Verbose(string.Format("GameManager.UnsubscribeEvents()"));
 
+      EventManager.Instance.RemoveListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
+    }
+
+    /// <summary>
+    /// Request/Announce scene loading
+    /// </summary>
+    void OnLoadSceneCommand(LoadSceneCommandEvent e) {
+      if (e.Handled) {
+        Log.Debug(string.Format("GameManager.OnLoadSceneCommand({0})", e));
+
+        if (e.SceneName == ApplicationConstants.MainScene) {
+          State = GameState.Ready;
+        }
+      }
     }
 
 
@@ -159,12 +176,12 @@ namespace Jammer {
     //   OnApplicationPause(false) is called
     //   OnApplicationFocus(true) is called
     protected void OnApplicationPause(bool pauseStatus) {
-      Log.Verbose(string.Format("ApplicationManager.OnApplicationPause(pauseStatus: {0})", pauseStatus));
+      Log.Verbose(string.Format("GameManager.OnApplicationPause(pauseStatus: {0})", pauseStatus));
 
     }
 
     protected void OnApplicationFocus(bool focusStatus) {
-      Log.Verbose(string.Format("ApplicationManager.OnApplicationFocus(focusStatus: {0})", focusStatus));
+      Log.Verbose(string.Format("GameManager.OnApplicationFocus(focusStatus: {0})", focusStatus));
 
       Focused = focusStatus;
 
@@ -175,7 +192,7 @@ namespace Jammer {
     }
 
     public void SaveSettings() {
-      Log.Debug(string.Format("ApplicationManager.SaveSettings()"));
+      Log.Debug(string.Format("GameManager.SaveSettings()"));
 
       string json = SerializeSettings();
       Settings.SetString(SettingsKey.Application, json);
@@ -186,7 +203,7 @@ namespace Jammer {
     /// Serialize to a dictionary of strings. Return a JSON string.
     /// </summary>
     public string SerializeSettings(bool prettyPrint = true) {
-      Log.Debug(string.Format("ApplicationManager.SerializeSettings()"));
+      Log.Debug(string.Format("GameManager.SerializeSettings()"));
 
       Formatting formatting = Formatting.None;
       if (prettyPrint) {
@@ -200,7 +217,7 @@ namespace Jammer {
     /// of strings.
     /// </summary>
     public bool DeserializeSettings(string json) {
-      Log.Debug(string.Format("ApplicationManager.DeserializeSettings({0}) this={1}", json,  this));
+      Log.Debug(string.Format("GameManager.DeserializeSettings({0}) this={1}", json,  this));
 
       bool result = false;
 
@@ -213,7 +230,7 @@ namespace Jammer {
         result = true;
       }
       catch (System.Exception e) {
-        Log.Error(string.Format("ApplicationManager.DeserializeSettings() failed with {0}", e.ToString()));
+        Log.Error(string.Format("GameManager.DeserializeSettings() failed with {0}", e.ToString()));
       }
 
       return result;

@@ -32,7 +32,7 @@ namespace Jammer.Scenes {
       Log.Debug(string.Format("BaseScene.OnEnable()"));
       base.OnEnable();
 
-      // notify event
+      // notify event, this scene has loaded
       Events.Raise(new LoadSceneCommandEvent() { Handled=true, SceneName=ActiveScene.name });
     }
 

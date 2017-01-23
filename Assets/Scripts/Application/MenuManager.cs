@@ -113,7 +113,7 @@ namespace Jammer {
     }
 
     /// <summary>
-    /// Request to load a scene
+    /// Request/Announce scene loading
     /// </summary>
     void OnLoadSceneCommand(LoadSceneCommandEvent e) {
       if (!e.Handled) {
@@ -142,7 +142,7 @@ namespace Jammer {
         CurrentScene = e.SceneName;
       }
       else {
-        Log.Debug(string.Format("MenuManager.OnLoadSceneCommand({0}) scene loaded", e));
+        Log.Verbose(string.Format("MenuManager.OnLoadSceneCommand({0}) scene loaded", e));
         // do nothing
       }
     }
