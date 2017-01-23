@@ -30,10 +30,6 @@ namespace Jammer {
     public IEnumerator Start() {
       Log.Debug(string.Format("DebugStats.Start()"));
 
-      // wait for game to start, only needed when this scene is run from the IDE
-      //while (Game == null) yield return null;
-      //while (Game.State == GameState.New) yield return null;
-
       #if SDD_DEBUG_OVERLAY
         gameObjectCount = 0;
         fps = 0;
@@ -85,8 +81,13 @@ namespace Jammer {
 
 
     IEnumerator UpdateDisplay() {
+      string gameState = "";
       while (true) {
-        stats = string.Format("FPS:{0, -3} MB:{1, -3} GO:{2, -4} {3}x{4} ({5}x{6})  ED:{7} {8} {9}",
+        if (Game != null) {
+          gameState = Game.State.ToString();
+        }
+
+        stats = string.Format("FPS:{0, -3} MB:{1, -3} GO:{2, -4} {3}x{4} ({5}x{6})  ED:{7} ST:{8} {9} {10}",
                 fps.ToString(),
                 string.Format("{0:f0}", memory),
                 gameObjectCount,
@@ -95,6 +96,7 @@ namespace Jammer {
                 UnityEngine.Screen.currentResolution.width,
                 UnityEngine.Screen.currentResolution.height,
                 eventDelegates,
+                gameState,
                 TimeScale(),
                 FetchKey()
               );
