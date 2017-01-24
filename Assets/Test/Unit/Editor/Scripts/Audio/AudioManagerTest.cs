@@ -52,7 +52,7 @@ namespace Jammer.Test {
       Assert.True(System.IO.File.Exists(filename));
 
       string contents = System.IO.File.ReadAllText(filename);
-      Assert.True(Regex.IsMatch(contents, @".MuteAudio.: false"));
+      Assert.True((Regex.IsMatch(contents, @"{}")) || Regex.IsMatch(contents, @".MuteAudio.: false"));
     }
   }
 }
