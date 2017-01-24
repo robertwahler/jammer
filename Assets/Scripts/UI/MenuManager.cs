@@ -235,20 +235,28 @@ namespace Jammer.UI {
 
       if (on) {
         state = MenuState.Opening;
-        // alpha off immediately
-        CanvasGroup.alpha = 0f;
-        // enable container
-        menuContainer.SetActive(true);
-        // fade on over duration
-        yield return CanvasGroup.DOFade(1f, duration: duration).WaitForCompletion();
+        if (menuContainer.activeSelf) {
+          // already active, just in case, make sure the alpha is all the way up
+          CanvasGroup.alpha = 1f;
+        }
+        else {
+          // alpha off immediately
+          CanvasGroup.alpha = 0f;
+          // enable container
+          menuContainer.SetActive(true);
+          // fade on over duration
+          yield return CanvasGroup.DOFade(1f, duration: duration).WaitForCompletion();
+        }
         state = MenuState.Open;
       }
       else {
-        state = MenuState.Closing;
-        // fade off over duration,
-        yield return CanvasGroup.DOFade(0f, duration: duration).WaitForCompletion();
-        menuContainer.SetActive(false);
-        state = MenuState.Closed;
+        if (menuContainer.activeSelf) {
+          state = MenuState.Closing;
+          // fade off over duration,
+          yield return CanvasGroup.DOFade(0f, duration: duration).WaitForCompletion();
+          menuContainer.SetActive(false);
+          state = MenuState.Closed;
+        }
       }
     }
 
