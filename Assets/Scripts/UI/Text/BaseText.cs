@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Jammer.UI {
 
-  public class BaseText : BehaviourBase {
+  public class BaseText : BaseBehaviour {
 
     /// <summary>
     /// The text component

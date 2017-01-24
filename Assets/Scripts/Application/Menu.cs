@@ -9,7 +9,7 @@ namespace Jammer {
   /// <summary>
   /// Used to identify the GameObject menu containers at runtime
   /// </summary>
-  public class Menu : BehaviourBase {
+  public class Menu : BaseBehaviour {
 
     public MenuId Id;
 

@@ -5,7 +5,7 @@ namespace SDD.Events {
   /// <summary>
   /// Event handler
   /// </summary>
-  public abstract class EventHandler : Jammer.BehaviourBase, IEventHandler {
+  public abstract class EventHandler : Jammer.BaseBehaviour, IEventHandler {
 
     /// <summary>
     /// Subscribe to events

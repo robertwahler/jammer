@@ -9,7 +9,7 @@ namespace Jammer.Behaviours {
   /// Attach to gameObject to prevent the entire hierarchy from being destroyed
   /// when a new scene is loaded.
   /// </summary>
-  public class DontDestroy : BehaviourBase {
+  public class DontDestroy : BaseBehaviour {
 
     void Awake() {
       DontDestroyOnLoad(transform.gameObject);

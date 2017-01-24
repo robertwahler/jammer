@@ -3,7 +3,7 @@ using SDD.Events;
 
 namespace Jammer {
 
-  public class BehaviourBase : MonoBehaviour {
+  public class BaseBehaviour : MonoBehaviour {
 
     /// <summary>
     /// The GameManager singleton, lazy loaded when required, but not forced on.

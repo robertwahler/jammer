@@ -8,7 +8,7 @@ namespace Jammer.Behaviours {
   /// <summary>
   /// Destroy the gameObject after duration given in seconds.
   /// </summary>
-  public class AutoDestroy : BehaviourBase {
+  public class AutoDestroy : BaseBehaviour {
 
     /// <summary>
     /// Wait for x seconds
