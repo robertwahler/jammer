@@ -1,4 +1,4 @@
-namespace Jammer {
+namespace Jammer.UI {
 
   /// <summary>
   /// Menu state

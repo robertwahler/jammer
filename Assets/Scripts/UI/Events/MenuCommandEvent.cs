@@ -1,6 +1,6 @@
 using Jammer.Commands;
 
-namespace Jammer {
+namespace Jammer.UI {
 
   /// <summary>
   /// Load a menu

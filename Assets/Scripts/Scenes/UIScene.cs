@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using SDD;
 
+using Jammer.UI;
+
 namespace Jammer.Scenes {
 
   /// <summary>

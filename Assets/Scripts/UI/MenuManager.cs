@@ -8,7 +8,7 @@ using SDD.Events;
 
 using Jammer.Scenes;
 
-namespace Jammer {
+namespace Jammer.UI {
 
   /// <summary>
   /// Light weight menu manager fake singleton. Listens for menu events, maps

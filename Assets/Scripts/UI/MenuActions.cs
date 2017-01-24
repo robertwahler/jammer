@@ -8,7 +8,7 @@ using SDD.Events;
 using Jammer.Scenes;
 using Jammer.Extensions;
 
-namespace Jammer {
+namespace Jammer.UI {
 
   public class MenuActions : EventHandler {
 

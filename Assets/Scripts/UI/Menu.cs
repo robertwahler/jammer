@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SDD;
 
-namespace Jammer {
+namespace Jammer.UI {
 
   /// <summary>
   /// Used to identify the GameObject menu containers at runtime
