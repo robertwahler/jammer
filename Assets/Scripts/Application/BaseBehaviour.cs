@@ -24,6 +24,16 @@ namespace Jammer {
     }
 
     /// <summary>
+    /// Convenience getter for the active scene
+    /// </summary>
+    public UnityEngine.SceneManagement.Scene ActiveScene {
+      get {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+      }
+    }
+
+
+    /// <summary>
     /// return this behaviour as a string
     /// </summary>
     public override string ToString() {

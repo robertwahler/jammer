@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +24,6 @@ namespace Jammer {
     /// </summary>
     static GameManager() {
       // set globals, defines here
-    }
-
-    /// <summary>
-    /// Convenience getter for the active scene
-    /// </summary>
-    public Scene ActiveScene {
-      get {
-        return SceneManager.GetActiveScene();
-      }
     }
 
     /// <summary>

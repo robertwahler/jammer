@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +8,6 @@ using SDD.Events;
 namespace Jammer.Scenes {
 
   public class BaseScene : EventHandler {
-
-    /// <summary>
-    /// Convenience getter for the active scene
-    /// </summary>
-    public Scene ActiveScene {
-      get {
-        return SceneManager.GetActiveScene();
-      }
-    }
 
     public virtual void Awake() {
       Log.Debug(string.Format("BaseScene.Awake()"));
