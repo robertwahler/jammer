@@ -99,7 +99,7 @@ namespace Jammer {
     public override void SubscribeEvents() {
       Log.Debug(string.Format("MenuManager.SubscribeEvents()"));
 
-      Events.AddListener<MainMenuCommandEvent>(OnMainMenuCommand);
+      Events.AddListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.AddListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
       Events.AddListener<UnloadSceneCommandEvent>(OnUnloadSceneCommand);
     }
@@ -107,12 +107,12 @@ namespace Jammer {
     public override void UnsubscribeEvents() {
       Log.Debug(string.Format("MenuManager.UnsubscribeEvents()"));
 
-      Events.RemoveListener<MainMenuCommandEvent>(OnMainMenuCommand);
+      Events.RemoveListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.RemoveListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
       Events.RemoveListener<UnloadSceneCommandEvent>(OnUnloadSceneCommand);
     }
 
-    public void OnMainMenuCommand(MainMenuCommandEvent e) {
+    public void OnMainMenuCommand(MenuCommandEvent e) {
       if (!e.Handled) {
         Log.Debug(string.Format("MenuManager.OnMainMenuCommand({0})", e));
 
@@ -225,7 +225,7 @@ namespace Jammer {
       }
 
       // notify event
-      Events.Raise(new MainMenuCommandEvent() { Handled=true, MenuId=CurrentMenu.Id, State=State });
+      Events.Raise(new MenuCommandEvent() { Handled=true, MenuId=CurrentMenu.Id, State=State });
     }
 
     private IEnumerator ToggleMenu(bool on) {

@@ -3,12 +3,12 @@ using Jammer.Commands;
 namespace Jammer {
 
   /// <summary>
-  /// Load the main menu
+  /// Load a menu
   /// </summary>
   /// <remarks>
   /// This a command if Handled==false and an announcement if Handled==true
   /// </remarks>
-  public class MainMenuCommandEvent : CommandEvent {
+  public class MenuCommandEvent : CommandEvent {
 
     /// <summary>
     /// The current (announcement) or requested (command) Id

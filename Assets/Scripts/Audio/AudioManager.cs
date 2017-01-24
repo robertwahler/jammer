@@ -71,14 +71,14 @@ namespace Jammer {
     public override void SubscribeEvents() {
       Log.Debug(string.Format("AudioManager.SubscribeEvents()"));
 
-      Events.AddListener<MainMenuCommandEvent>(OnMainMenuCommand);
+      Events.AddListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.AddListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
     }
 
     public override void UnsubscribeEvents() {
       Log.Debug(string.Format("AudioManager.UnsubscribeEvents()"));
 
-      Events.RemoveListener<MainMenuCommandEvent>(OnMainMenuCommand);
+      Events.RemoveListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.RemoveListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
     }
 
@@ -89,7 +89,7 @@ namespace Jammer {
       }
     }
 
-    public void OnMainMenuCommand(MainMenuCommandEvent e) {
+    public void OnMainMenuCommand(MenuCommandEvent e) {
       if (!e.Handled) {
         Log.Verbose(string.Format("AudioManager.OnMainMenuCommand({0})", e));
         // TODO: lower vol/freq using filter when menus are open

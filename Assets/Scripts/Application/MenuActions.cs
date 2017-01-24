@@ -82,7 +82,7 @@ namespace Jammer {
     public void OnOptions() {
       Log.Debug(string.Format("MenuActions.OnOptions()"));
 
-      Events.Raise(new MainMenuCommandEvent() { Handled=false, MenuId=MenuId.Options, State=MenuState.Open });
+      Events.Raise(new MenuCommandEvent() { Handled=false, MenuId=MenuId.Options, State=MenuState.Open });
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ namespace Jammer {
     public void OnAbout() {
       Log.Debug(string.Format("MenuActions.OnAbout()"));
 
-      Events.Raise(new MainMenuCommandEvent() { Handled=false, MenuId=MenuId.About, State=MenuState.Open });
+      Events.Raise(new MenuCommandEvent() { Handled=false, MenuId=MenuId.About, State=MenuState.Open });
     }
 
     /// <summary>

@@ -16,7 +16,7 @@ namespace Jammer.Scenes {
       Log.Debug(string.Format("StartScene.Start()"));
 
       // show menus first time through
-      Events.Raise(new MainMenuCommandEvent() { Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
+      Events.Raise(new MenuCommandEvent() { Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
     }
 
     protected override void HandleInput() {

@@ -329,7 +329,7 @@ namespace Jammer {
       if (Input.GetKeyDown(KeyCode.Escape)) {
         if (MenuManager.Instance.State == MenuState.Closed) {
           Log.Verbose(string.Format("GameManager.HandleInput() KeyCode.Escape, menus are closed"));
-          EventManager.Instance.Raise(new MainMenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
+          EventManager.Instance.Raise(new MenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
         }
 
       }
