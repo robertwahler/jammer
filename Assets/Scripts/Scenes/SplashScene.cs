@@ -14,14 +14,14 @@ namespace Jammer.Scenes {
     public CanvasGroup canvasGroupLogo;
 
     public override void Awake() {
-      Log.Debug(string.Format("SplashScene.Awake()"));
+      Log.Verbose(string.Format("SplashScene.Awake()"));
 
       // Don't call base.Awake(), this is the only scene that doesn't
       // need to support hot-loading of the GameManager
     }
 
     protected override void OnEnable() {
-      Log.Debug(string.Format("SplashScene.OnEnable()"));
+      Log.Verbose(string.Format("SplashScene.OnEnable()"));
       base.OnEnable();
 
       if (canvasGroupLogo != null) {

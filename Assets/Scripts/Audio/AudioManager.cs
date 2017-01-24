@@ -20,7 +20,7 @@ namespace Jammer {
     public static AudioManager Instance {
       get {
         if (instance == null) {
-          Log.Debug(string.Format("AudioManager.Instance.get looking for object"));
+          Log.Verbose(string.Format("AudioManager.Instance.get looking for object"));
           instance = (AudioManager) GameObject.FindObjectOfType(typeof(AudioManager));
         }
 
@@ -71,14 +71,14 @@ namespace Jammer {
     }
 
     public override void SubscribeEvents() {
-      Log.Debug(string.Format("AudioManager.SubscribeEvents()"));
+      Log.Verbose(string.Format("AudioManager.SubscribeEvents()"));
 
       Events.AddListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.AddListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
     }
 
     public override void UnsubscribeEvents() {
-      Log.Debug(string.Format("AudioManager.UnsubscribeEvents()"));
+      Log.Verbose(string.Format("AudioManager.UnsubscribeEvents()"));
 
       Events.RemoveListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.RemoveListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
@@ -106,13 +106,13 @@ namespace Jammer {
 
       try {
         if (string.IsNullOrEmpty(json)) {
-          Log.Verbose(string.Format("AudioManager.Load(json: {0}) loading from Audio.txt", json));
+          Log.Debug(string.Format("AudioManager.Load(json: {0}) loading from Audio.txt", json));
           // load the data, defaults to empty string
           json = Settings.GetString(SettingsKey.Audio);
         }
         if (!string.IsNullOrEmpty(json)) {
           audioSettings = JsonConvert.DeserializeObject<AudioSettings>(json);
-          Log.Debug(string.Format("AudioManager.Load(json: {0}) loaded audioSettings {1}", json, audioSettings));
+          Log.Verbose(string.Format("AudioManager.Load(json: {0}) loaded audioSettings {1}", json, audioSettings));
         }
         else {
           Log.Verbose(string.Format("AudioManager.Load(json: {0}) Audio.txt empty, using audio defaults", json));

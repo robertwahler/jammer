@@ -41,7 +41,7 @@ namespace Jammer.UI {
     public static MenuManager Instance {
       get {
         if (instance == null) {
-          Log.Debug(string.Format("MenuManager.Instance.get looking for object"));
+          Log.Verbose(string.Format("MenuManager.Instance.get looking for object"));
           instance = (MenuManager) GameObject.FindObjectOfType(typeof(MenuManager));
         }
         return instance;
@@ -72,7 +72,7 @@ namespace Jammer.UI {
     public string CurrentScene { get; set; }
 
     protected override void OnEnable() {
-      Log.Debug(string.Format("MenuManager.OnEnable()"));
+      Log.Verbose(string.Format("MenuManager.OnEnable()"));
       base.OnEnable();
 
       // always turn off design time menus so we start from the initial know state of closed
@@ -97,7 +97,7 @@ namespace Jammer.UI {
     }
 
     public override void SubscribeEvents() {
-      Log.Debug(string.Format("MenuManager.SubscribeEvents()"));
+      Log.Verbose(string.Format("MenuManager.SubscribeEvents()"));
 
       Events.AddListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.AddListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
@@ -105,7 +105,7 @@ namespace Jammer.UI {
     }
 
     public override void UnsubscribeEvents() {
-      Log.Debug(string.Format("MenuManager.UnsubscribeEvents()"));
+      Log.Verbose(string.Format("MenuManager.UnsubscribeEvents()"));
 
       Events.RemoveListener<MenuCommandEvent>(OnMainMenuCommand);
       Events.RemoveListener<LoadSceneCommandEvent>(OnLoadSceneCommand);

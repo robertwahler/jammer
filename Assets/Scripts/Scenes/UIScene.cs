@@ -21,7 +21,7 @@ namespace Jammer.Scenes {
     public Menu designTimeMenu;
 
     protected override void OnEnable() {
-      Log.Debug(string.Format("UIScene.OnEnable()"));
+      Log.Verbose(string.Format("UIScene.OnEnable()"));
       base.OnEnable();
 
       if (ActiveScene.name != ApplicationConstants.UIScene) {

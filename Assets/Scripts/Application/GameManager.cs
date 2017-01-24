@@ -21,9 +21,11 @@ namespace Jammer {
 
     /// <summary>
     /// Static constructor. Not inherited and only executed once for generics.
+    /// initialize here even before the Initialize() method
     /// </summary>
     static GameManager() {
-      // set globals, defines here
+      // default static settings
+      Log.LogLevels = LogLevels.Info | LogLevels.Warning | LogLevels.Error;
     }
 
     /// <summary>
@@ -46,7 +48,7 @@ namespace Jammer {
     /// Log granularity
     /// </summary>
     public LogLevels LogLevels { get { return GetLogLevels(); } set { SetLogLevels(value); }}
-    private LogLevels logLevels = (LogLevels.Debug | LogLevels.Info | LogLevels.Warning | LogLevels.Error);
+    private LogLevels logLevels = Log.LogLevels;
 
     /// <summary>
     /// Initialize happens on Awake for new Singletons
@@ -101,14 +103,10 @@ namespace Jammer {
         DeserializeSettings(json);
       }
 
-      // Production builds always disable most settings regardless of IDE
-      // setting, desktop can override on CLI for most thing except console
-      // server just two options allowed by default. You can turn on logging
-      // in a production build by tapping the dog's head 5 times.
-      LogLevels = (LogLevels.Info | LogLevels.Warning | LogLevels.Error);
       #if SDD_LOG_DEBUG
         LogLevels |= LogLevels.Debug;
       #endif
+
       #if SDD_LOG_VERBOSE
         LogLevels |= LogLevels.Verbose;
       #endif
@@ -251,7 +249,7 @@ namespace Jammer {
         path = folder + "/" + name;
       }
 
-      Log.Debug(string.Format("Product.Load() loading asset at {0}", path));
+      Log.Debug(string.Format("Product.Load() loading asset {0}", path));
       // this is the "live" prefab, not an instance clone that lives in the scene
       prefab = (GameObject) Resources.Load(path);
 

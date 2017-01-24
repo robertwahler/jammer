@@ -10,11 +10,11 @@ namespace Jammer.Scenes {
   public class BaseScene : EventHandler {
 
     public virtual void Awake() {
-      Log.Debug(string.Format("BaseScene.Awake()"));
+      Log.Verbose(string.Format("BaseScene.Awake()"));
 
       // If the GameManager instance is not available, then it needs to be created.
       if (!GameManager.Instance) {
-        Log.Debug(string.Format("BaseScene.Awake() GameManager singleton not found, loading GameManager prefab..."));
+        Log.Verbose(string.Format("BaseScene.Awake() GameManager singleton not found, loading GameManager prefab..."));
         GameObject prefab = (GameObject) Resources.Load("GameManager");
         prefab.name = "GameManager";
         UnityEngine.Object.Instantiate(prefab);
@@ -22,7 +22,7 @@ namespace Jammer.Scenes {
     }
 
     protected override void OnEnable() {
-      Log.Debug(string.Format("BaseScene.OnEnable()"));
+      Log.Verbose(string.Format("BaseScene.OnEnable()"));
       base.OnEnable();
 
       // notify event, this scene has loaded

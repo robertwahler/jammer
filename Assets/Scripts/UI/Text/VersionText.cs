@@ -11,7 +11,7 @@ namespace Jammer.UI {
   public class VersionText : BaseText {
 
     void OnEnable() {
-      Log.Debug(string.Format("VersionText.OnEnable() ID={0}", GetInstanceID()));
+      Log.Verbose(string.Format("VersionText.OnEnable() ID={0}", GetInstanceID()));
       Text.text = string.Format("Version {0} {1}", ApplicationHelper.Version.ToString(), ApplicationHelper.Version.BuildFlags);
     }
 

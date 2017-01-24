@@ -20,7 +20,7 @@ namespace Jammer.UI {
     private bool initialized = false;
 
     protected override void OnEnable() {
-      Log.Debug(string.Format("MenuActions.OnEnable()"));
+      Log.Verbose(string.Format("MenuActions.OnEnable()"));
       base.OnEnable();
 
       // first attempt, dependents may not be ready
@@ -40,7 +40,7 @@ namespace Jammer.UI {
 
     protected virtual void Initialize() {
       if ((!initialized) && (AudioManager.Instance != null)) {
-        Log.Debug(string.Format("MenuActions.Initialize()"));
+        Log.Verbose(string.Format("MenuActions.Initialize()"));
         // set value without firing an event
         toggleMuteAudio.SetValue(AudioManager.Instance.MuteAudio);
         initialized = true;
@@ -48,13 +48,13 @@ namespace Jammer.UI {
     }
 
     public override void SubscribeEvents() {
-      Log.Debug(string.Format("MenuActions.SubscribeEvents()"));
+      Log.Verbose(string.Format("MenuActions.SubscribeEvents()"));
 
       Events.AddListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
     }
 
     public override void UnsubscribeEvents() {
-      Log.Debug(string.Format("MenuActions.UnsubscribeEvents()"));
+      Log.Verbose(string.Format("MenuActions.UnsubscribeEvents()"));
 
       Events.RemoveListener<AudioSettingsCommandEvent>(OnAudioSettingsCommand);
     }
