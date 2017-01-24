@@ -50,9 +50,21 @@ namespace Jammer {
     private static MenuManager instance = null;
 
     /// <summary>
+    /// Dictionary of available menus, populated at runtime
+    /// </summary>
+    public Dictionary<MenuId, Menu> Menus { get; set; }
+
+    /// <summary>
+    /// The currently open menu. Defaults to MenuId.Main unless we are in play
+    /// mode on this scene, then the loaded design time menu is current.
+    /// </summary>
+    public Menu CurrentMenu { get; private set; }
+
+    /// <summary>
     /// Menu state
     /// </summary>
-    public MenuState State { get { return GetState(); } set { SetState(value); }}
+    public MenuState State { get { return GetState(); } protected set { SetState(value); }}
+    private MenuState state = MenuState.Closed;
 
     /// <summary>
     /// The name of the currently loaded scene or nil none
@@ -63,8 +75,25 @@ namespace Jammer {
       Log.Debug(string.Format("MenuManager.OnEnable()"));
       base.OnEnable();
 
-      // always turn off design time menus
+      // always turn off design time menus so we start from the initial know state of closed
       menuContainer.SetActive(false);
+
+      Menus = new Dictionary<MenuId, Menu>();
+
+      // collect all the child menus into a dictionary
+      Menus.Clear();
+      Menu[] menus = transform.GetComponentsInChildren<Menu>(includeInactive: true);
+      foreach (Menu menu in menus) {
+        if (!Menus.ContainsKey(menu.Id)) {
+          Log.Verbose(string.Format("MenuManager.OnEnable() add menu={0} to Menus", menu));
+          Menus[menu.Id] = menu;
+          // make sure all design time active menus start inactive
+          menu.gameObject.SetActive(false);
+        }
+        else {
+          Log.Error(string.Format("MenuManager.OnEnable() menu={0} duplicate id assigned to menu gameObject", menu));
+        }
+      }
     }
 
     public override void SubscribeEvents() {
@@ -85,23 +114,44 @@ namespace Jammer {
 
     public void OnMainMenuCommand(MainMenuCommandEvent e) {
       if (!e.Handled) {
-        Log.Debug(string.Format("GameScene.OnMainMenuCommand({0})", e));
+        Log.Debug(string.Format("MenuManager.OnMainMenuCommand({0})", e));
 
-        // MenuCommand is a toggle
-        if (State == MenuState.Closed) {
-          State = MenuState.Open;
+        OpenMenu(id: e.MenuId);
+
+        // open or close depending on the request
+        State = e.State;
+      }
+    }
+
+    private void OpenMenu(MenuId id) {
+      Log.Debug(string.Format("MenuManager.OpenMenu(id: {0})", id));
+
+        Menu newMenu = null;
+        if (Menus.ContainsKey(id)) {
+          newMenu = Menus[id];
         }
         else {
-          State = MenuState.Closed;
+          Log.Error(string.Format("MenuManager.OpenMenu({0}) unable to find requested menu", id));
+          // stop the handler here
+          return;
         }
-      }
+
+        // TODO: swapping current menu should be a coroutine so it can be animated
+        if (CurrentMenu != null) {
+          Log.Verbose(string.Format("MenuManager.OpenMenu({0}) disabling CurrentMenu {1}", id, CurrentMenu), gameObject);
+          CurrentMenu.gameObject.SetActive(false);
+        }
+
+        CurrentMenu = newMenu;
+        Log.Verbose(string.Format("MenuManager.OpenMenu({0}) enable CurrentMenu {1}", id, CurrentMenu), gameObject);
+        CurrentMenu.gameObject.SetActive(true);
     }
 
 
     /// <summary>
     /// Request to unload a scene
     /// </summary>
-    void OnUnloadSceneCommand(UnloadSceneCommandEvent e) {
+    private void OnUnloadSceneCommand(UnloadSceneCommandEvent e) {
       if (!e.Handled) {
         Log.Debug(string.Format("MenuManager.OnUnloadSceneCommand({0})", e));
 
@@ -115,7 +165,7 @@ namespace Jammer {
     /// <summary>
     /// Request/Announce scene loading
     /// </summary>
-    void OnLoadSceneCommand(LoadSceneCommandEvent e) {
+    private void OnLoadSceneCommand(LoadSceneCommandEvent e) {
       if (!e.Handled) {
         Log.Debug(string.Format("MenuManager.OnLoadSceneCommand({0})", e));
 
@@ -148,12 +198,7 @@ namespace Jammer {
     }
 
     private MenuState GetState() {
-      if (menuContainer.activeSelf) {
-        return MenuState.Open;
-      }
-      else {
-        return MenuState.Closed;
-      }
+      return state;
     }
 
     private void SetState(MenuState value) {
@@ -169,13 +214,18 @@ namespace Jammer {
           StartCoroutine(ToggleMenu(on: true));
           break;
 
+        case MenuState.Opening:
+        case MenuState.Closing:
+          // nothing to do
+          break;
+
         default:
           Log.Error(string.Format("MenuManager.SetState(value: {0}) unhandled state", value));
           break;
       }
 
       // notify event
-      Events.Raise(new MainMenuCommandEvent() { Handled=true, State=State });
+      Events.Raise(new MainMenuCommandEvent() { Handled=true, MenuId=CurrentMenu.Id, State=State });
     }
 
     private IEnumerator ToggleMenu(bool on) {
@@ -184,17 +234,47 @@ namespace Jammer {
       float duration = 0.5f;
 
       if (on) {
+        state = MenuState.Opening;
         // alpha off immediately
         CanvasGroup.alpha = 0f;
         // enable container
         menuContainer.SetActive(true);
         // fade on over duration
         yield return CanvasGroup.DOFade(1f, duration: duration).WaitForCompletion();
+        state = MenuState.Open;
       }
       else {
+        state = MenuState.Closing;
         // fade off over duration,
         yield return CanvasGroup.DOFade(0f, duration: duration).WaitForCompletion();
         menuContainer.SetActive(false);
+        state = MenuState.Closed;
+      }
+    }
+
+    protected virtual void Update() {
+      // only handle input if we are already open, ignore closed and transitioning states
+      if (State == MenuState.Open) {
+        HandleInput();
+      }
+    }
+
+    protected virtual void HandleInput() {
+      if (Input.GetKeyDown(KeyCode.Escape)) {
+        Log.Debug(string.Format("MenuManager.HandleInput() KeyCode.Escape"));
+
+        switch(CurrentMenu.Id) {
+
+          case MenuId.Main:
+            // close menus
+            StartCoroutine(ToggleMenu(on: false));
+            break;
+
+          default:
+            // back to main menu
+            OpenMenu(id: MenuId.Main);
+            break;
+        }
       }
     }
 

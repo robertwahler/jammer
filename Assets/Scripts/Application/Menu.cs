@@ -1,0 +1,23 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using SDD;
+
+namespace Jammer {
+
+  /// <summary>
+  /// Used to identify the GameObject menu containers at runtime
+  /// </summary>
+  public class Menu : BehaviourBase {
+
+    public MenuId Id;
+
+    /// <summary>
+    /// Return a string
+    /// </summary>
+    public override string ToString(){
+      return string.Format("{0}, Id {1}", base.ToString(), Id);
+    }
+  }
+}

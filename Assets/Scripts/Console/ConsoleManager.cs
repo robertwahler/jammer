@@ -30,7 +30,7 @@ namespace Jammer.Console {
     }
 
     protected virtual void SetState(ConsoleState value) {
-      Log.Debug(string.Format("ConsoleState.SetState(value: {0})", value));
+      Log.Debug(string.Format("ConsoleManager.SetState(value: {0})", value));
 
       if (state != value) {
         state = value;
@@ -38,7 +38,7 @@ namespace Jammer.Console {
     }
 
     public void Start() {
-      Log.Debug(string.Format("ConsoleState.Start()"));
+      Log.Debug(string.Format("ConsoleManager.Start()"));
 
       // TODO: Use C# attributes to define commands instead of hard-wiring here
       DebugLogConsole.AddCommandInstance(command: "SetMuteAudio", methodName: "SetMuteAudio", instance: AudioManager.Instance);
@@ -54,7 +54,7 @@ namespace Jammer.Console {
     protected virtual void HandleInput() {
 
       if (Input.GetKeyDown(toggleKey)) {
-        Log.Debug(string.Format("ConsoleState.HandleInput() State {0}, toggleKey {1} pressed", State, toggleKey));
+        Log.Debug(string.Format("ConsoleManager.HandleInput() State {0}, toggleKey {1} pressed", State, toggleKey));
 
         // clear input of hotkey, is there a better way to eat the hotkey?
         commandInputField.text = Regex.Replace(commandInputField.text, "`", "");

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,15 @@ namespace Jammer {
     }
 
     /// <summary>
+    /// Convenience getter for the active scene
+    /// </summary>
+    public Scene ActiveScene {
+      get {
+        return SceneManager.GetActiveScene();
+      }
+    }
+
+    /// <summary>
     /// Application wide settings. These are serialized to application.txt in JSON format.
     /// </summary>
     public ApplicationSettings ApplicationSettings { get; set; }
@@ -34,7 +44,6 @@ namespace Jammer {
     /// Focused when application is focused
     /// </summary>
     public bool Focused { get; set; }
-
 
     /// <summary>
     /// Game finite state machine
@@ -181,7 +190,7 @@ namespace Jammer {
     }
 
     protected void OnApplicationFocus(bool focusStatus) {
-      Log.Verbose(string.Format("GameManager.OnApplicationFocus(focusStatus: {0})", focusStatus));
+      //Log.Verbose(string.Format("GameManager.OnApplicationFocus(focusStatus: {0})", focusStatus));
 
       Focused = focusStatus;
 
@@ -311,8 +320,19 @@ namespace Jammer {
       HandleInput();
     }
 
+    /// <summary>
+    /// Global input handler
+    /// </summary>
     private void HandleInput() {
-      // global input handler
+
+      // open menus if they are closed
+      if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (MenuManager.Instance.State == MenuState.Closed) {
+          Log.Verbose(string.Format("GameManager.HandleInput() KeyCode.Escape, menus are closed"));
+          EventManager.Instance.Raise(new MainMenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
+        }
+
+      }
     }
 
   }

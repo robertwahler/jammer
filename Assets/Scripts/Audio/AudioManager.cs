@@ -91,7 +91,7 @@ namespace Jammer {
 
     public void OnMainMenuCommand(MainMenuCommandEvent e) {
       if (!e.Handled) {
-        Log.Debug(string.Format("AudioManager.OnMainMenuCommand({0})", e));
+        Log.Verbose(string.Format("AudioManager.OnMainMenuCommand({0})", e));
         // TODO: lower vol/freq using filter when menus are open
       }
     }

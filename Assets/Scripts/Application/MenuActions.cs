@@ -71,9 +71,27 @@ namespace Jammer {
     /// Play game!
     /// </summary>
     public void OnPlay() {
-      Log.Debug(string.Format("MenuActions.OnPlay() this={0}", this));
+      Log.Debug(string.Format("MenuActions.OnPlay()"));
 
       Events.Raise(new LoadSceneCommandEvent() { Handled=false, SceneName=ApplicationConstants.MainScene, Mode=LoadSceneMode.Single });
+    }
+
+    /// <summary>
+    /// Options menu
+    /// </summary>
+    public void OnOptions() {
+      Log.Debug(string.Format("MenuActions.OnOptions()"));
+
+      Events.Raise(new MainMenuCommandEvent() { Handled=false, MenuId=MenuId.Options, State=MenuState.Open });
+    }
+
+    /// <summary>
+    /// About/Credits menu
+    /// </summary>
+    public void OnAbout() {
+      Log.Debug(string.Format("MenuActions.OnAbout()"));
+
+      Events.Raise(new MainMenuCommandEvent() { Handled=false, MenuId=MenuId.About, State=MenuState.Open });
     }
 
     /// <summary>

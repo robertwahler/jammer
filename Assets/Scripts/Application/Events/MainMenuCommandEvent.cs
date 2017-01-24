@@ -11,7 +11,12 @@ namespace Jammer {
   public class MainMenuCommandEvent : CommandEvent {
 
     /// <summary>
-    /// Menu state.  Set when handled
+    /// The current (announcement) or requested (command) Id
+    /// </summary>
+    public MenuId MenuId { get; set; }
+
+    /// <summary>
+    /// The current (announcement) or requested (command) State
     /// </summary>
     public MenuState State { get; set; }
 
@@ -19,7 +24,7 @@ namespace Jammer {
     /// Return a string
     /// </summary>
     public override string ToString(){
-      return string.Format("{0}, State {1}", base.ToString(), State);
+      return string.Format("{0}, MenuId {1}, State {2}", base.ToString(), MenuId, State);
     }
   }
 }
