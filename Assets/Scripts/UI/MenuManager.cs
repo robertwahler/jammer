@@ -266,8 +266,10 @@ namespace Jammer.UI {
         switch(CurrentMenu.Id) {
 
           case MenuId.Main:
-            // close menus
-            StartCoroutine(ToggleMenu(on: false));
+            // close menus if we are not on the start menu
+            if (ActiveScene.name != ApplicationConstants.StartScene) {
+              StartCoroutine(ToggleMenu(on: false));
+            }
             break;
 
           default:
