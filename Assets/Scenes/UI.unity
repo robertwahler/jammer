@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 162916949}
-  - 114: {fileID: 162916950}
   m_Layer: 5
   m_Name: Menus
   m_TagString: Untagged
@@ -121,26 +120,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &162916950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 162916948}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 150
-    m_Right: 50
-    m_Top: 100
-    m_Bottom: 75
-  m_ChildAlignment: 4
-  m_Spacing: 20
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
 --- !u!1 &332466104
 GameObject:
   m_ObjectHideFlags: 0
