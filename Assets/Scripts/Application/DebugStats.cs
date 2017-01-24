@@ -73,7 +73,7 @@ namespace Jammer {
 
         // convert to MB (1024x1024)
         memory = System.GC.GetTotalMemory(false) / 1048576f;
-        eventDelegates = EventManager.Instance.DelegateLookupCount;
+        eventDelegates = Events.DelegateLookupCount;
 
         yield return WaitFor.Seconds(1f);
       }

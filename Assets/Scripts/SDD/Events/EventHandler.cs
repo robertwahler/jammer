@@ -11,7 +11,7 @@ namespace SDD.Events {
     /// Subscribe to events
     ///
     /// @example
-    ///   EventManager.Instance.AddListener<MoveResolvedEvent>(OnMoveResolved);
+    ///   Events.AddListener<MoveResolvedEvent>(OnMoveResolved);
     /// </summary>
     public abstract void SubscribeEvents();
 
@@ -19,7 +19,7 @@ namespace SDD.Events {
     /// Unsubscribe from events
     ///
     /// @example
-    ///   EventManager.Instance.RemoveListener<MoveResolvedEvent>(OnMoveResolved);
+    ///   Events.RemoveListener<MoveResolvedEvent>(OnMoveResolved);
     /// </summary>
     public abstract void UnsubscribeEvents();
 

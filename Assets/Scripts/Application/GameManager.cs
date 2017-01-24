@@ -151,13 +151,13 @@ namespace Jammer {
     protected virtual void SubscribeEvents() {
       Log.Verbose(string.Format("GameManager.SubscribeEvents()"));
 
-      EventManager.Instance.AddListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
+      Events.AddListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
     }
 
     protected virtual void UnsubscribeEvents() {
       Log.Verbose(string.Format("GameManager.UnsubscribeEvents()"));
 
-      EventManager.Instance.RemoveListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
+      Events.RemoveListener<LoadSceneCommandEvent>(OnLoadSceneCommand);
     }
 
     /// <summary>
@@ -311,7 +311,7 @@ namespace Jammer {
       }
 
       // publish state change event
-      EventManager.Instance.Raise(new GameStateEvent(){ Game=this, State=state });
+      Events.Raise(new GameStateEvent(){ Game=this, State=state });
     }
 
     private void Update() {
@@ -329,7 +329,7 @@ namespace Jammer {
       if (Input.GetKeyDown(KeyCode.Escape)) {
         if (MenuManager.Instance.State == MenuState.Closed) {
           Log.Verbose(string.Format("GameManager.HandleInput() KeyCode.Escape, menus are closed"));
-          EventManager.Instance.Raise(new MenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
+          Events.Raise(new MenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
         }
 
       }

@@ -8,7 +8,7 @@ namespace Jammer {
   /// Usage: Create a child of this behaviour and attach the child script to a
   /// GameObject.
   /// </summary>
-  public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
+  public abstract class Singleton<T> : BaseBehaviour where T : BaseBehaviour {
 
     /// <summary>
     /// Controls DontDestroyOnLoad flag. Needed by test suite.
