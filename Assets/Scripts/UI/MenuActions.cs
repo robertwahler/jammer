@@ -68,6 +68,15 @@ namespace Jammer.UI {
     }
 
     /// <summary>
+    /// Show the main menu (go back from child menus)
+    /// </summary>
+    public void OnMenu() {
+      Log.Debug(string.Format("MenuActions.OnOnMenu()"));
+
+      Events.Raise(new MenuCommandEvent() { Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
+    }
+
+    /// <summary>
     /// Play game!
     /// </summary>
     public void OnPlay() {
