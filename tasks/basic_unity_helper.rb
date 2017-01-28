@@ -9,6 +9,7 @@ module BasicUnity
 
   ROOT_FOLDER = File.expand_path(File.join(File.dirname(__FILE__), ".."))
   ASSETS_FOLDER = File.join(ROOT_FOLDER, "Assets")
+  SCRIPTS_FOLDER = File.join(ASSETS_FOLDER, "Scripts")
   RESOURCES_FOLDER = File.join(ASSETS_FOLDER, "Resources")
   DOC_FOLDER = File.join(ROOT_FOLDER, "doc")
   PROJECT_FOLDER = File.join(ROOT_FOLDER, "ProjectSettings")
@@ -19,9 +20,6 @@ module BasicUnity
   STAGING_FOLDER = File.join(TMP_FOLDER, 'staging')
   TASKS_FOLDER = File.join(ROOT_FOLDER, 'tasks')
   LIBRARY_FOLDER = File.join(ROOT_FOLDER, 'Library')
-
-  PRODUCT_IDENTIFIER_BASE = "com.example"
-  PRODUCT_IDENTIFIER_DEFAULT = "com.example.jammer"
 
   JSON_OPTIONS = { :aligned => true, :around_colon => 1 }
 
@@ -103,14 +101,15 @@ module BasicUnity
       "production"
     end
 
-    # @return [String] the product name, override Unity with a ".product" file
-    def default_product
-      filename = File.join(ROOT_FOLDER, ".product")
+    # @return [String] the product name, read from ApplicationConstants.cs with fallback to project settings
+    def product_code
+      filename = File.join(SCRIPTS_FOLDER, "Application", "ApplicationConstants.cs")
       contents = nil
 
       if File.exists?(filename)
         File.open(filename, "r") do |f|
           contents = f.read.strip
+          contents.match(/ProductCode\W+(\w+)/)
         end
       end
 

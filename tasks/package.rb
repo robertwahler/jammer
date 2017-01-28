@@ -128,7 +128,7 @@ module BasicUnity
     end
 
     def set_instance_variables
-      @product = default_product
+      @product = product_code
     end
 
   end

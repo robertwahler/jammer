@@ -38,7 +38,7 @@ module BasicUnity
 
     desc "status", "Get the status of the current product"
     def status
-      execute "'#{butler_binary}' status #{itch_id}/#{default_product} --verbose"
+      execute "'#{butler_binary}' status #{itch_id}/#{product_code} --verbose"
     end
 
     private
@@ -71,7 +71,7 @@ module BasicUnity
     end
 
     def set_push_instance_variables(platform, channel)
-      @product = default_product
+      @product = product_code
       @platform = platform
       @dry_run = options["dry-run"]
       @version = options[:version] ? options[:version] : read_version_string
