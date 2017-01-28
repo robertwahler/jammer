@@ -43,7 +43,7 @@ namespace Jammer {
         StartCoroutine(CalculateStats());
         StartCoroutine(UpdateDisplay());
       #else
-        enabled = false;
+        gameObject.SetActive(false);
         yield break;
       #endif
     }
