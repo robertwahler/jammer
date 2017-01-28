@@ -1,8 +1,9 @@
 {
-  "product" : "Jammer",
-  "version" : "0.2.0",
-  "label"   : null,
-  "code"    : "1",
-  "build"   : "f46fdb2",
-  "unity"   : "5.3.6f1"
+  "version": "0.3.0",
+  "product": "Jammer",
+  "code": 1,
+  "build": "850b6d3",
+  "label": null,
+  "unity": "5.3.6f1",
+  "BuildFlags": ""
 }
