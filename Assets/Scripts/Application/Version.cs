@@ -26,6 +26,11 @@ namespace Jammer {
     public string version = "0.0.0";
 
     /// <summary>
+    /// The product code id
+    /// </summary>
+    public string product = ApplicationConstants.ProductCode;
+
+    /// <summary>
     /// Used by Google play store to determine if one version is newer than
     /// another version.  This written to "Bundle Version Code" for Android in
     /// project settings.
