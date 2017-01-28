@@ -5,6 +5,12 @@ namespace Jammer {
   public static class ApplicationConstants {
 
     /// <summary>
+    /// Application product name. Used as namespace. Application exe name. Save
+    /// folder name. etc.
+    /// </summary>
+    public const string ProductCode = "Jammer";
+
+    /// <summary>
     /// Scene to load after splash shown
     /// </summary>
     public const string StartScene = "Start";
