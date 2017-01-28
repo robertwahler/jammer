@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -96,6 +98,35 @@ namespace Jammer {
         // pretty print
         Formatting = Formatting.Indented,
       });
+
+      // read command line options
+      if (ApplicationHelper.IsDesktop()) {
+        string[] args = System.Environment.GetCommandLineArgs();
+        string commandLine = string.Join(" ", args);
+
+        foreach (string arg in args) {
+          // store all settings the given folder
+          if (Regex.IsMatch(arg, @"--settings-folder")) {
+            // This handles quoted paths with spaces but leaves the quotes in place
+            Regex regex = new Regex(@"--settings-folder\s+(?<path>[\""].+?[\""]|[^ ]+)");
+            Match match = regex.Match(commandLine);
+            if (match.Success) {
+              string path = match.Groups["path"].Value;
+              if (!Path.IsPathRooted(path)) {
+                // convert to absolute path
+                path = Path.Combine(Directory.GetCurrentDirectory(), path);
+              }
+              if (Directory.Exists(path)) {
+                Log.Debug(string.Format("GameManager.Initialize() Settings.DataPath: {0}", path));
+                Settings.DataPath = path;
+              }
+              else {
+                Log.Error(string.Format("GameManager.Initialize() requested settings folder {0} does not exist", path));
+              }
+            }
+          }
+        }
+      }
 
       // load the data, defaults to empty string
       string json = Settings.GetString(SettingsKey.Application);
