@@ -58,26 +58,26 @@ namespace Jammer {
     /// <summary>
     /// Application version deserialized from a JSON resource 'version.txt'
     /// </summary>
-    public static Version Version {
-      get {
-        if (version == null) {
-          try {
-            TextAsset textData = (TextAsset) Resources.Load("Version", typeof(TextAsset));
-            if (textData != null) {
-              version = JsonConvert.DeserializeObject<Version>(textData.text);
-            }
-            else {
-              Log.Error(string.Format("ApplicationHelper.Version failed to load Version.txt from resources"));
-            }
+    public static Version Version { get { return GetVersion(); }}
+    private static Version version;
+
+    private static Version GetVersion() {
+      if (version == null) {
+        try {
+          TextAsset textData = (TextAsset) Resources.Load("Version", typeof(TextAsset));
+          if (textData != null) {
+            version = JsonConvert.DeserializeObject<Version>(textData.text);
           }
-          catch (System.Exception e) {
-            Log.Error(string.Format("ApplicationHelper.Version failed with {0}", e.ToString()));
+          else {
+            Log.Error(string.Format("ApplicationHelper.GetVersion() failed to load Version.txt from resources"));
           }
         }
-        return version;
+        catch (System.Exception e) {
+          Log.Error(string.Format("ApplicationHelper.GetVersion() failed with {0}", e.ToString()));
+        }
       }
+      return version;
     }
-    private static Version version;
 
   }
 }
