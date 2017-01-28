@@ -44,6 +44,7 @@ namespace Jammer {
         StartCoroutine(UpdateDisplay());
       #else
         enabled = false;
+        yield break;
       #endif
     }
 
