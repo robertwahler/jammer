@@ -121,10 +121,6 @@ module BasicUnity
 
       # README.txt
       copy_file(File.join(DOC_FOLDER, 'README.txt'), File.join(destination, 'README.txt'))
-
-      # TODO: verison.txt should be copied to staging folder by build process, otherwise the version could be mismatched
-      # version.txt
-      copy_file(File.join(RESOURCES_FOLDER, 'version.txt'), File.join(destination, 'version.txt'))
     end
 
     def set_instance_variables

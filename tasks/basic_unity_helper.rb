@@ -16,6 +16,7 @@ module BasicUnity
   VENDOR_FOLDER = File.join(ASSETS_FOLDER, "Plugins", "Vendor")
   TMP_FOLDER = File.join(ROOT_FOLDER, "tmp")
   BUILD_FOLDER = File.join(ROOT_FOLDER, "build")
+  BUILDLOG_FOLDER = File.join(BUILD_FOLDER, "log")
   PKG_FOLDER = File.join(ROOT_FOLDER, 'pkg')
   STAGING_FOLDER = File.join(TMP_FOLDER, 'staging')
   TASKS_FOLDER = File.join(ROOT_FOLDER, 'tasks')
@@ -104,16 +105,17 @@ module BasicUnity
     # @return [String] the product name, read from ApplicationConstants.cs with fallback to project settings
     def product_code
       filename = File.join(SCRIPTS_FOLDER, "Application", "ApplicationConstants.cs")
-      contents = nil
+      code = nil
 
       if File.exists?(filename)
         File.open(filename, "r") do |f|
           contents = f.read.strip
           contents.match(/ProductCode\W+(\w+)/)
+          code = $1
         end
       end
 
-      return contents.nil? ? read_product_name : contents
+      return code.nil? ? read_product_name : code
     end
 
     def unity_binary
@@ -319,6 +321,20 @@ module BasicUnity
       File.open(version_info_file, 'w') { |file| file.write(JSON.neat_generate(json, JSON_OPTIONS)) }
     end
 
+    # 988 = device sdk
+    # 989 = simulator sdk
+    # write iOS sdk version to  directly to ProjectSettings.asset
+    def write_ios_sdk(version)
+      filename = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      contents = ""
+      File.open(filename, "r") do |f|
+        contents = f.read
+      end
+
+      contents = contents.gsub(/iPhoneSdkVersion: .*$/, "iPhoneSdkVersion: #{version}")
+      File.open(filename, 'w') { |file| file.write(contents) }
+    end
+
     def generate_build_number
       `git log --pretty=format:%h --abbrev-commit -1`
     end
@@ -337,11 +353,50 @@ module BasicUnity
       return contents.nil? ? "Unity" : contents
     end
 
+    def build_logfile_filename(target)
+      product = product_code
+      case target
+        when /OSX/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.app.log")
+        when /Windows/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.Windows.log")
+        when /Linux/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.Linux.log")
+        when /Android/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.apk.log")
+        when /IOS/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.iOS.log")
+        when /TvOS/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.tvOS.log")
+        when /WebGL/
+          File.join(BUILDLOG_FOLDER, "#{product.capitalize}.WebGL.log")
+        else
+          raise Error, "build_logfile_filename unknown target: #{target.inspect}"
+      end
+    end
+
+    def settings_folder(product, stage="production")
+      if (stage == "development")
+        File.join(ROOT_FOLDER, "tmp", "settings", @product.capitalize)
+      elsif mac?
+        File.expand_path(File.join("~", "Library", "Application Support", read_company_name, read_product_name))
+      elsif windows?
+        File.expand_path(File.join("~", "AppData", "LocalLow", read_company_name, read_product_name))
+      else
+        # linux
+        File.expand_path(File.join("~", ".config", "unity3d", read_company_name, read_product_name))
+      end
+    end
+
     # run using thor, this is the most compatible run method
     # returns global $? for exit status, cannot capture output
     def run_command(command, logfile=nil)
 
+      FileUtils::mkdir BUILD_FOLDER unless File.exists?(BUILD_FOLDER)
+
       if logfile
+        FileUtils::mkdir BUILDLOG_FOLDER unless File.exists?(BUILDLOG_FOLDER)
+
         # backticks to capture output
         say_status "run", command, :green
         output = `#{command}`
