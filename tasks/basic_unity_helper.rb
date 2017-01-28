@@ -22,7 +22,8 @@ module BasicUnity
   TASKS_FOLDER = File.join(ROOT_FOLDER, 'tasks')
   LIBRARY_FOLDER = File.join(ROOT_FOLDER, 'Library')
 
-  JSON_OPTIONS = { :aligned => true, :around_colon => 1 }
+  # https://github.com/Phrogz/NeatJSON#options
+  JSON_OPTIONS = { :after_colon => 1 }
 
   module BasicUnityHelper
 
