@@ -11,6 +11,7 @@ namespace Jammer.Editor {
     public const int MENU_BUILDER_RELEASE = 1000;
     public const int MENU_BUILDER_DEVELOPMENT = 1010;
     public const int MENU_BUILDER_TARGET = 1020;
+    public const int MENU_BUILDER_LOGLEVELS = 1030;
 
   }
 }
