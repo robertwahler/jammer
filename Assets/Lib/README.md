@@ -1,12 +1,12 @@
 Lib
 ===
 
-SDD.Base.dll
+Jammer.dll
 ------------
 
-Salty Dog Digital MIT licensed base classes
+Jammer base classes
 
-### SDD.Logger
+### Jammer.Logger
 
 Granular Unity debug log wrapper with source (./src) but compiled to DLL to
 avoid wrapper functions junking up your stack traces.  Conditionally compiled

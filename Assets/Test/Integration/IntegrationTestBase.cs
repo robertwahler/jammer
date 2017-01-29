@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 
-using SDD.Events;
-using Colors.Events;
+using Jammer.Events;
 
-namespace Examples.Integration.Test {
+namespace Jammer.Integration.Test {
 
   /// <summary>
   /// All integration tests are based on IntegrationTestBase

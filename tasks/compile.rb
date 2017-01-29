@@ -10,15 +10,15 @@ module BasicUnity
     # adds :quiet, :skip, :pretent, :force
     add_runtime_options!
 
-    desc "base", "compile ./src/SDD.Base to Assets/Lib/SDD.Base.dll"
-    def base
-      command = "#{mcs_binary} -recurse:'src/SDD/Base/*.cs' \
+    desc "jammer", "compile ./src/Jammer to Assets/Lib/Jammer.dll"
+    def jammer
+      command = "#{mcs_binary} -recurse:'src/Jammer/*.cs' \
                  -lib:/Applications/Unity/Unity.app/Contents/Frameworks/ \
                  -lib:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/ \
                  -r:UnityEngine \
                  -target:library \
-                 -out:Assets/Lib/SDD.Base.dll \
-                 -doc:Assets/Lib/SDD.Base.xml"
+                 -out:Assets/Lib/Jammer.dll \
+                 -doc:Assets/Lib/Jammer.xml"
       run(command)
     end
 
@@ -57,8 +57,8 @@ module BasicUnity
       # lines += parse_csproj(File.join(ROOT_FOLDER, "Assembly-CSharp.csproj"))
       #lines << "-recurse:Assets/Editor/*.cs"
       lines << "-recurse:Assets/Test/*.cs"
-      lines << "-recurse:Assets/Examples/*.cs" if File.exists?(File.join(ASSETS_FOLDER, "Examples"))
-      lines << "-recurse:Assets/Scripts/*.cs"
+      lines << "-recurse:Assets/Jammer/*.cs"
+      lines << "-recurse:Assets/Scripts/*.cs" if File.exists?(File.join(ASSETS_FOLDER, "Scripts"))
 
       # remove dupe assemblies, if any (tvOS, iOS)
       cleaned_lines = []

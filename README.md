@@ -99,7 +99,6 @@ This mean that turning off git's autocrlf is the path of least resistance.
 ### Make Your Game
 
 * Completely replace the contents of scene file Level1.unity with your game
-* Delete the ./Examples folder
 
 Scenes
 ------
@@ -178,23 +177,28 @@ To use, add then to Unity's `Player Settings, Other Settings, Scripting Define S
 The letters `[D]` denote strings shown at runtime with the games version.  This
 helps determine what defines were enabled for any given build.
 
-#### SDD_DEBUG [D]
+#### JAMMER_DEBUG [D]
 
 Controls misc debugging functions. Strips Verbose and Debug logging when
 missing.
 
-#### SDD_LOG_DEBUG [L0]
+#### JAMER_LOG_DEBUG [L0]
 
-Enable LogLevel debug. Requires SDD_DEBUG otherwise debug logs are stripped out.
+Enable LogLevel debug. Requires JAMMER_DEBUG otherwise debug logs are stripped out.
 
-#### SDD_LOG_VERBOSE [L1]
+#### JAMMER_LOG_VERBOSE [L1]
 
-Enable LogLevel verbose. Requires SDD_DEBUG otherwise verbose logs are stripped
+Enable LogLevel verbose. Requires JAMMER_DEBUG otherwise verbose logs are stripped
 out. Setting verbose doesn't set debug.  They are separate options.
 
-#### SDD_DEBUG_OVERLAY
+#### JAMMER_DEBUG_OVERLAY
 
 Shows the debug overlay stats line on all screens.
+
+#### JAMMER_CONSOLE [C]
+
+The in-game debug console, use Keycode.BackQuote to open
+
 
 Testing
 -------

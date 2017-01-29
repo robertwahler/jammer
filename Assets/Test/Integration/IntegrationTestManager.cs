@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 
-using SDD.Events;
+using Jammer.Events;
 
-namespace Examples.Integration.Test {
+namespace Jammer.Integration.Test {
 
   /// <summary>
   /// Manages the Setup and Teardown before and after ALL integration tests.
@@ -72,7 +72,7 @@ namespace Examples.Integration.Test {
     }
 
     /// <summary>
-    /// This is run before all the tests in this namespace (SDD.Test).
+    /// This is run before all the tests in this namespace (Jammer.Test).
     /// </summary>
     /// <remarks>
     /// Needs to run BEFORE the GameManager so that the stubs are ready
@@ -87,7 +87,7 @@ namespace Examples.Integration.Test {
     }
 
     /// <summary>
-    /// This is run after all the tests in this namespace (SDD.Test)
+    /// This is run after all the tests in this namespace (Jammer.Test)
     /// </summary>
     public void AfterAll() {
       Debug.Log(string.Format("IntegrationTestManager.AfterAll()"));
@@ -96,7 +96,7 @@ namespace Examples.Integration.Test {
     }
 
     /// <summary>
-    /// This is run by IntegrationTestBase before each of the tests in this namespace (SDD.Test).
+    /// This is run by IntegrationTestBase before each of the tests in this namespace (Jammer.Test).
     /// </summary>
     public void BeforeEach() {
       Debug.Log(string.Format("IntegrationTestManager.BeforeEach()"));
@@ -106,7 +106,7 @@ namespace Examples.Integration.Test {
     }
 
     /// <summary>
-    /// This is run by IntegrationTestBase after each test in this namespace (SDD.Test)
+    /// This is run by IntegrationTestBase after each test in this namespace (Jammer.Test)
     /// </summary>
     public void AfterEach() {
       Debug.Log(string.Format("IntegrationTestManager.AfterEach()"));
@@ -141,8 +141,6 @@ namespace Examples.Integration.Test {
       if (!System.IO.Directory.Exists(TestPath)) {
         System.IO.Directory.CreateDirectory(TestPath);
       }
-
-      //Settings.Clear();
     }
 
     /// <summary>
@@ -156,7 +154,6 @@ namespace Examples.Integration.Test {
       Debug.Log(string.Format("IntegrationTestManager.StubSettingsPath()"));
 
       // stub out production settings folder
-      //SDD.Settings.DataPath = TestPath;
       ClearSettings();
     }
 
