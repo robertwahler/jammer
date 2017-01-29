@@ -82,84 +82,6 @@ namespace Jammer.Editor {
       EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTarget.tvOS);
     }
 
-    //
-    // DEVELOPMENT BUILDS
-    //
-
-    [MenuItem("Window/Jammer/Builder/Development/OSX", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 10)]
-    public static void PerformOSXDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.StandaloneOSXUniversal, opt: developmentOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Development/Windows", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 20)]
-    public static void PerformWindowsDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.StandaloneWindows, opt: developmentOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Development/Linux", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 30)]
-    public static void PerformLinuxDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.StandaloneLinuxUniversal, opt: developmentOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Development/iOS", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 40)]
-    public static void PerformIOSDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.iOS, opt: developmentOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Development/Android", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 50)]
-    public static void PerformAndroidDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.Android, opt: developmentOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Development/WebGL", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 200)]
-    public static void PerformWebGLDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.WebGL, opt: developmentOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Development/tvOS", false, Shortcuts.MENU_BUILDER_DEVELOPMENT + 210)]
-    public static void PerformTvOSDevelopmentBuild() {
-      Build(productCode: Code, target: BuildTarget.tvOS, opt: developmentOptions);
-    }
-
-    //
-    // RELEASE BUILDS
-    //
-
-    [MenuItem("Window/Jammer/Builder/Release/OSX", false, Shortcuts.MENU_BUILDER_RELEASE + 10)]
-    public static void PerformOSXReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.StandaloneOSXUniversal, opt: releaseOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Release/Windows", false, Shortcuts.MENU_BUILDER_RELEASE + 20)]
-    public static void PerformWindowsReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.StandaloneWindows, opt: releaseOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Release/Linux", false, Shortcuts.MENU_BUILDER_RELEASE + 30)]
-    public static void PerformLinuxReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.StandaloneLinuxUniversal, opt: releaseOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Release/iOS", false, Shortcuts.MENU_BUILDER_RELEASE + 40)]
-    public static void PerformIOSReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.iOS, opt: releaseOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Release/Android", false, Shortcuts.MENU_BUILDER_RELEASE + 50)]
-    public static void PerformAndroidReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.Android, opt: releaseOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Release/WebGL", false, Shortcuts.MENU_BUILDER_RELEASE + 200)]
-    public static void PerformWebGLReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.WebGL, opt: releaseOptions);
-    }
-
-    [MenuItem("Window/Jammer/Builder/Release/tvOS", false, Shortcuts.MENU_BUILDER_RELEASE + 210)]
-    public static void PerformTvOSReleaseBuild() {
-      Build(productCode: Code, target: BuildTarget.tvOS, opt: releaseOptions);
-    }
-
     /// <summary>
     /// Do the build
     /// </summary>
@@ -197,7 +119,7 @@ namespace Jammer.Editor {
       }
     }
 
-    static string[] ScenePaths() {
+    public static string[] ScenePaths() {
       Log.Debug(string.Format("Builder.ScenePaths()"));
 
       string[] scenes = new string[EditorBuildSettings.scenes.Length];
