@@ -294,13 +294,17 @@ namespace Jammer.Editor {
 
         case BuildTarget.Android:
           string password = "";
+          string key = "Jammer Android Keystore";
 
           if (Application.platform == RuntimePlatform.OSXEditor) {
-            password = FindKeychainPassword("SDD Android Keystore");
+            password = FindKeychainPassword(key);
           }
           if (!string.IsNullOrEmpty(password)) {
             PlayerSettings.Android.keystorePass = password;
             PlayerSettings.Android.keyaliasPass = password;
+          }
+          else {
+            Log.Error(string.Format("Builder.ConfigurePlayerSettings(target: {0}) unable to find password for Android keystore key {1}", target, key));
           }
           break;
 
