@@ -193,7 +193,6 @@ namespace Jammer {
       }
     }
 
-
     // Event order:
     //
     //   App initially starts:
@@ -206,7 +205,6 @@ namespace Jammer {
     //   OnApplicationFocus(true) is called
     protected void OnApplicationPause(bool pauseStatus) {
       Log.Verbose(string.Format("GameManager.OnApplicationPause(pauseStatus: {0})", pauseStatus));
-
     }
 
     protected void OnApplicationFocus(bool focusStatus) {
@@ -337,7 +335,10 @@ namespace Jammer {
     private void Update() {
       if (!Focused) return;
 
-      HandleInput();
+      // game manager only handles input if the menus are closed
+      if (MenuManager.Instance.State == MenuState.Closed) {
+        HandleInput();
+      }
     }
 
     /// <summary>
@@ -345,13 +346,9 @@ namespace Jammer {
     /// </summary>
     private void HandleInput() {
 
-      // open menus if they are closed
       if (Input.GetKeyDown(KeyCode.Escape)) {
-        if (MenuManager.Instance.State == MenuState.Closed) {
-          Log.Verbose(string.Format("GameManager.HandleInput() KeyCode.Escape, menus are closed"));
-          Events.Raise(new MenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
-        }
-
+        Log.Verbose(string.Format("GameManager.HandleInput() KeyCode.Escape, opening main menu"));
+        Events.Raise(new MenuCommandEvent(){ Handled=false, MenuId=MenuId.Main, State=MenuState.Open });
       }
     }
 
