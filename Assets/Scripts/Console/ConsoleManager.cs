@@ -41,7 +41,14 @@ namespace Jammer.Console {
       Log.Debug(string.Format("ConsoleManager.Start()"));
 
       // TODO: Use C# attributes to define commands instead of hard-wiring here
+      // or at least raise an event to let components know they can register
+
+
+      // add instance methods
       DebugLogConsole.AddCommandInstance(command: "SetMuteAudio", methodName: "SetMuteAudio", instance: AudioManager.Instance);
+
+      // add static methods
+      DebugLogConsole.AddCommandStatic(command: "Version", methodName: "ConsoleApplicationVersion", ownerType: typeof(ApplicationHelper));
     }
 
     public void Update() {

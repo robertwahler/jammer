@@ -79,6 +79,12 @@ namespace Jammer {
       return version;
     }
 
+    #if SDD_CONSOLE
+      private static void ConsoleApplicationVersion() {
+        Log.Info(string.Format("{0} Version {1}", ApplicationConstants.ProductCode, Version));
+      }
+    #endif
+
   }
 }
 
