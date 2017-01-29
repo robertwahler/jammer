@@ -99,7 +99,6 @@ This mean that turning off git's autocrlf is the path of least resistance.
 ### Make Your Game
 
 * Completely replace the contents of scene file Level1.unity with your game
-* Delete the ./Examples folder
 
 Scenes
 ------

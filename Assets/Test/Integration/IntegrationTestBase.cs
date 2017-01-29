@@ -6,9 +6,8 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 using Jammer.Events;
-using Colors.Events;
 
-namespace Examples.Integration.Test {
+namespace Jammer.Integration.Test {
 
   /// <summary>
   /// All integration tests are based on IntegrationTestBase

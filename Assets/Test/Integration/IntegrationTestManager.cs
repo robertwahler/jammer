@@ -7,7 +7,7 @@ using System.Linq;
 
 using Jammer.Events;
 
-namespace Examples.Integration.Test {
+namespace Jammer.Integration.Test {
 
   /// <summary>
   /// Manages the Setup and Teardown before and after ALL integration tests.

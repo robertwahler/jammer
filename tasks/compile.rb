@@ -58,7 +58,6 @@ module BasicUnity
       #lines << "-recurse:Assets/Editor/*.cs"
       lines << "-recurse:Assets/Test/*.cs"
       lines << "-recurse:Assets/Jammer/*.cs"
-      lines << "-recurse:Assets/Examples/*.cs" if File.exists?(File.join(ASSETS_FOLDER, "Examples"))
       lines << "-recurse:Assets/Scripts/*.cs" if File.exists?(File.join(ASSETS_FOLDER, "Scripts"))
 
       # remove dupe assemblies, if any (tvOS, iOS)
