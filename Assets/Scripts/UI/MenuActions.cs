@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening;
-using SDD;
-using SDD.Events;
 
+using Jammer.Events;
 using Jammer.Scenes;
 using Jammer.Extensions;
 

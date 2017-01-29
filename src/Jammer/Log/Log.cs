@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SDD {
+namespace Jammer {
 
   /// <summary>
   /// UnityEngine.Debug.Log wrapper
@@ -20,9 +20,9 @@ namespace SDD {
     /// Verbose logging
     /// </summary>
     /// <remarks>
-    /// Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+    /// Will be stripped out by the compiler unless "JAMMER_DEBUG" is defined
     /// </remarks>
-    [System.Diagnostics.Conditional("SDD_DEBUG")]
+    [System.Diagnostics.Conditional("JAMMER_DEBUG")]
     public static void Verbose(object message) {
       if ((LogLevels & LogLevels.Verbose) == LogLevels.Verbose) {
         if (Application.platform == RuntimePlatform.Android) {
@@ -36,9 +36,9 @@ namespace SDD {
     /// Debug logging
     /// </summary>
     /// <remarks>
-    /// Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+    /// Will be stripped out by the compiler unless "JAMMER_DEBUG" is defined
     /// </remarks>
-    [System.Diagnostics.Conditional("SDD_DEBUG")]
+    [System.Diagnostics.Conditional("JAMMER_DEBUG")]
     public static void Debug(object message) {
       if ((LogLevels & LogLevels.Debug) == LogLevels.Debug) {
         if (Application.platform == RuntimePlatform.Android) {
@@ -88,9 +88,9 @@ namespace SDD {
     /// Verbose logging with object context
     /// </summary>
     /// <remarks>
-    /// Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+    /// Will be stripped out by the compiler unless "JAMMER_DEBUG" is defined
     /// </remarks>
-    [System.Diagnostics.Conditional("SDD_DEBUG")]
+    [System.Diagnostics.Conditional("JAMMER_DEBUG")]
     public static void Verbose(object message, Object context) {
       if ((LogLevels & LogLevels.Verbose) == LogLevels.Verbose) {
         if (Application.platform == RuntimePlatform.Android) {
@@ -104,9 +104,9 @@ namespace SDD {
     /// Debug logging with object context
     /// </summary>
     /// <remarks>
-    /// Will be stripped out by the compiler unless "SDD_DEBUG" is defined
+    /// Will be stripped out by the compiler unless "JAMMER_DEBUG" is defined
     /// </remarks>
-    [System.Diagnostics.Conditional("SDD_DEBUG")]
+    [System.Diagnostics.Conditional("JAMMER_DEBUG")]
     public static void Debug(object message, Object context) {
       if ((LogLevels & LogLevels.Debug) == LogLevels.Debug) {
         if (Application.platform == RuntimePlatform.Android) {

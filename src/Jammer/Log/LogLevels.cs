@@ -1,4 +1,4 @@
-namespace SDD {
+namespace Jammer {
 
   /// <summary>
   /// Log levels

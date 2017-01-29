@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using DG.Tweening;
-using SDD;
-using SDD.Events;
 
+using Jammer.Events;
 using Jammer.Scenes;
 
 namespace Jammer.UI {

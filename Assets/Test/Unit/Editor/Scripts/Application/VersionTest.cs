@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 using NUnit.Framework;
-using SDD;
 
 namespace Jammer.Test {
 

@@ -1,5 +1,3 @@
-using SDD;
-
 using Jammer.Commands;
 
 namespace Jammer.Scenes {

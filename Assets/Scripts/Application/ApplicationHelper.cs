@@ -1,6 +1,5 @@
 using UnityEngine;
 using Newtonsoft.Json;
-using SDD;
 
 namespace Jammer {
 
@@ -79,7 +78,7 @@ namespace Jammer {
       return version;
     }
 
-    #if SDD_CONSOLE
+    #if JAMMER_CONSOLE
       private static void ConsoleApplicationVersion() {
         Log.Info(string.Format("{0} Version {1}", ApplicationConstants.ProductCode, Version));
       }

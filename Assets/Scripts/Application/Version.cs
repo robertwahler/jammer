@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using SDD;
 
 namespace Jammer {
 
@@ -74,17 +73,17 @@ namespace Jammer {
       // Duplicates will be removed
       List<string> flags = new List<string>();
 
-      #if SDD_DEBUG
+      #if JAMMER_DEBUG
         flags.Add("D");
-        #if SDD_LOG_DEBUG
+        #if JAMER_LOG_DEBUG
           flags.Add("L0");
         #endif
-        #if SDD_LOG_VERBOSE
+        #if JAMMER_LOG_VERBOSE
           flags.Add("L1");
         #endif
       #endif
 
-      #if SDD_CONSOLE
+      #if JAMMER_CONSOLE
         flags.Add("C");
       #endif
 

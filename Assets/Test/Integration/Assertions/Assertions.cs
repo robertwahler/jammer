@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace SDD.Assertions {
+namespace Jammer.Assertions {
 
   /// <summary>
   /// Define our own assertions because the NUnit framework is in the Editor namespace

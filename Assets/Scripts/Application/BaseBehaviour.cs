@@ -1,5 +1,6 @@
 using UnityEngine;
-using SDD.Events;
+
+using Jammer.Events;
 
 namespace Jammer {
 

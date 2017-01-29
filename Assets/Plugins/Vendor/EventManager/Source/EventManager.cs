@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace SDD.Events {
+namespace Jammer.Events {
 
   /// <summary>
   /// Event Manager manages publishing raised events to subscribing/listening classes.

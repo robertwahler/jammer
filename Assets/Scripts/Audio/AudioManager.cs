@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
 using Newtonsoft.Json;
-using SDD;
-using SDD.Events;
 
+using Jammer.Events;
 using Jammer.UI;
 
 namespace Jammer {

@@ -10,15 +10,15 @@ module BasicUnity
     # adds :quiet, :skip, :pretent, :force
     add_runtime_options!
 
-    desc "base", "compile ./src/SDD.Base to Assets/Lib/SDD.Base.dll"
-    def base
-      command = "#{mcs_binary} -recurse:'src/SDD/Base/*.cs' \
+    desc "jammer", "compile ./src/Jammer to Assets/Lib/Jammer.dll"
+    def jammer
+      command = "#{mcs_binary} -recurse:'src/Jammer/*.cs' \
                  -lib:/Applications/Unity/Unity.app/Contents/Frameworks/ \
                  -lib:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/ \
                  -r:UnityEngine \
                  -target:library \
-                 -out:Assets/Lib/SDD.Base.dll \
-                 -doc:Assets/Lib/SDD.Base.xml"
+                 -out:Assets/Lib/Jammer.dll \
+                 -doc:Assets/Lib/Jammer.xml"
       run(command)
     end
 

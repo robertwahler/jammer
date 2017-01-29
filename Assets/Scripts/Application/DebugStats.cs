@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using SDD;
-using SDD.Events;
+
+using Jammer.Events;
 
 namespace Jammer {
 
@@ -30,7 +30,7 @@ namespace Jammer {
     public IEnumerator Start() {
       Log.Debug(string.Format("DebugStats.Start()"));
 
-      #if SDD_DEBUG_OVERLAY
+      #if JAMMER_DEBUG_OVERLAY
         gameObjectCount = 0;
         fps = 0;
         stats = "";

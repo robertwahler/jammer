@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using SDD;
 
 using Jammer.Extensions;
 
@@ -226,11 +225,11 @@ namespace Jammer.Editor {
 
       // development defines
       if (opt.HasFlag(BuildOptions.Development)) {
-        defines.Add("SDD_DEBUG");
-        defines.Add("SDD_DEBUG_OVERLAY");
-        defines.Add("SDD_LOG_DEBUG");
-        defines.Add("SDD_CONSOLE");
-        defines.Add("SDD_DEBUG_RAYCASTS");
+        defines.Add("JAMMER_DEBUG");
+        defines.Add("JAMMER_DEBUG_OVERLAY");
+        defines.Add("JAMER_LOG_DEBUG");
+        defines.Add("JAMMER_CONSOLE");
+        defines.Add("JAMMER_DEBUG_RAYCASTS");
       }
 
       // remove current dupes, more dupes may still be added later
@@ -463,7 +462,7 @@ namespace Jammer.Editor {
       Log.Debug(string.Format("Builder.CopyRawResources(productCode: {0}, target: {1}) copying {2} to {3}", productCode, target, source, destination));
       System.IO.File.Copy(sourceFileName: source, destFileName: destination, overwrite: true);
 
-      if (defines.Contains("SDD_STEAM")) {
+      if (defines.Contains("JAMMER_STEAM")) {
         // steam_appid.txt (otherwise, app won't run properly unless started by steam directly
         source = string.Format("{0}/steam_appid.txt", System.IO.Directory.GetCurrentDirectory());
         destination = string.Format("{0}/steam_appid.txt", BuildFolderExe(productCode, target));
@@ -510,12 +509,12 @@ namespace Jammer.Editor {
 
     /// <summary>
     /// OSX builds use keychain to set Android keystore password. Use the
-    /// KeyChain app to add the following password for Account "SDD" and Name "SDD
+    /// KeyChain app to add the following password for Account "Jammer" and Name "Jammer
     /// Android KeyStore".
     ///
     /// Read on CLI
     ///
-    ///     security -q find-generic-password  -l "SDD Android Keystore" -w
+    ///     security -q find-generic-password  -l "Jammer Android Keystore" -w
     ///
     /// </summary>
     /// <remarks>

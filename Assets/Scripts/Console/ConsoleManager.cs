@@ -5,8 +5,6 @@ using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Formatters;
 using System.Linq;
 
-using SDD;
-
 namespace Jammer.Console {
 
   /// <summary>

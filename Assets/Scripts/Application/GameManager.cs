@@ -8,9 +8,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using DG.Tweening;
-using SDD;
-using SDD.Events;
 
+using Jammer.Events;
 using Jammer.Scenes;
 using Jammer.UI;
 
@@ -134,15 +133,15 @@ namespace Jammer {
         DeserializeSettings(json);
       }
 
-      #if SDD_LOG_DEBUG
+      #if JAMER_LOG_DEBUG
         LogLevels |= LogLevels.Debug;
       #endif
 
-      #if SDD_LOG_VERBOSE
+      #if JAMMER_LOG_VERBOSE
         LogLevels |= LogLevels.Verbose;
       #endif
 
-      #if SDD_CONSOLE
+      #if JAMMER_CONSOLE
         // log debug console from resources
         CreatePrefab(name: "Console");
       #endif

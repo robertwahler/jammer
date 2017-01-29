@@ -1,12 +1,12 @@
 using NUnit.Framework;
 
-namespace SDD.Events.Test {
+namespace Jammer.Events.Test {
 
-  public class TestOneEvent : SDD.Events.Event {
+  public class TestOneEvent : Jammer.Events.Event {
     public string Name { get; set; }
   }
 
-  public class TestTwoEvent : SDD.Events.Event {
+  public class TestTwoEvent : Jammer.Events.Event {
     public string Name { get; set; }
   }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 
-using SDD.Events;
+using Jammer.Events;
 using Colors.Events;
 
 namespace Examples.Integration.Test {

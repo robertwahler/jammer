@@ -35,7 +35,7 @@ module BasicUnity
     end
 
     desc "defines", "report on compiler defines usage frequency, helps detect typos"
-    method_option :verbose, :type => :boolean, :desc => "Show vebose information, not just SDD_"
+    method_option :verbose, :type => :boolean, :desc => "Show vebose information, not just JAMMER_"
     def defines
       # cs files
       files = Dir.glob(File.join("Assets", '**', '*.cs'))
@@ -58,9 +58,9 @@ module BasicUnity
 
       # sort by key
       tokens.sort.to_h.each do |key, value|
-        # skip all but SDD defines unless --verbose
+        # skip all but JAMMER defines unless --verbose
         unless options[:verbose]
-          next unless key =~ /SDD_/
+          next unless key =~ /JAMMER_/
         end
 
         if value > 2

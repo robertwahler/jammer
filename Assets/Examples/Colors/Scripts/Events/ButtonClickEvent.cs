@@ -1,4 +1,4 @@
-using SDD.Events;
+using Jammer.Events;
 
 namespace Colors.Events {
 

@@ -1,4 +1,4 @@
-namespace SDD.Events {
+namespace Jammer.Events {
 
   /// <summary>
   ///  Interface for event handlers

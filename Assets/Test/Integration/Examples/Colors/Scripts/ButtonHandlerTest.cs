@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Linq;
 
-using SDD.Events;
-using SDD.Assertions;
+using Jammer.Events;
+using Jammer.Assertions;
 using Colors;
 using Colors.Events;
 

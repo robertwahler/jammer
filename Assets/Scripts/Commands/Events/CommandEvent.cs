@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
-using SDD.Events;
+
+using Jammer.Events;
 
 namespace Jammer.Commands {
 

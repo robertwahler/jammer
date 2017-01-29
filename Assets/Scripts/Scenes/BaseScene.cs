@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using SDD;
-using SDD.Events;
+
+using Jammer.Events;
 
 namespace Jammer.Scenes {
 

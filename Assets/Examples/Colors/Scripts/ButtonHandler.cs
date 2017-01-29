@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using SDD;
-using SDD.Events;
+using Jammer;
+using Jammer.Events;
 
 using Colors.Events;
 

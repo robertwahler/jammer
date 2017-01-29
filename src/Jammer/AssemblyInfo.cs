@@ -2,13 +2,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("SDD.Base")]
-[assembly: AssemblyProduct("SDD.Base")]
+[assembly: AssemblyTitle("Jammer")]
+[assembly: AssemblyProduct("Jammer")]
 
-[assembly: AssemblyDescription(".Net/Mono/Unity SDD Base Library for Games")]
+[assembly: AssemblyDescription(".Net/Mono/Unity Base Library for Games")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Copyright © 2014-2017 Salty Dog Digital LLC")]
+[assembly: AssemblyCopyright("Copyright © 2017 Robert C. Wahler")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

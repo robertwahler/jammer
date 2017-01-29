@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SDD.Events {
+namespace Jammer.Events {
 
   /// <summary>
   /// Event handler

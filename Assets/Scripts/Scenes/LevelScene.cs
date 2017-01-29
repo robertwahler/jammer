@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using DG.Tweening;
-using SDD;
-using SDD.Events;
+
+using Jammer.Events;
 
 namespace Jammer.Scenes {
 
