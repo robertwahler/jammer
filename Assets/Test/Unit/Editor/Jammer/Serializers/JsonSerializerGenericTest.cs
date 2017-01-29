@@ -5,7 +5,7 @@ using System.Linq;
 using NUnit.Framework;
 using Newtonsoft.Json;
 
-namespace Jammer.Test.NewtonSoft {
+namespace Jammer.Test {
 
   [TestFixture]
   [Category("Serializers")]

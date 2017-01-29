@@ -1,11 +1,12 @@
 using Jammer.Events;
+using Jammer.Commands;
 
 namespace Colors.Events {
 
   /// <summary>
   /// Raised event signals a button was clicked
   /// </summary>
-  public class ButtonClickEvent : BaseEvent {
+  public class ButtonClickEvent : CommandEvent {
 
     /// <summary>
     /// Sender handler

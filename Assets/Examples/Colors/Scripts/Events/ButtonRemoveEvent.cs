@@ -1,11 +1,12 @@
 using Jammer.Events;
+using Jammer.Commands;
 
 namespace Colors.Events {
 
   /// <summary>
   /// Raised event signals a button is removed
   /// </summary>
-  public class ButtonRemoveEvent : BaseEvent {
+  public class ButtonRemoveEvent : CommandEvent {
 
     /// <summary>
     /// Sender handler

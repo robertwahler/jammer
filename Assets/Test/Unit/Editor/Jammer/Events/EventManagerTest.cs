@@ -1,6 +1,8 @@
 using NUnit.Framework;
 
-namespace Jammer.Events.Test {
+using Jammer.Events;
+
+namespace Jammer.Test {
 
   public class TestOneEvent : Jammer.Events.Event {
     public string Name { get; set; }
