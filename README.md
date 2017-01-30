@@ -40,7 +40,7 @@ Features
   [./Assets/Lib](Assets/Lib) to avoid wrapper functions junking up your stack traces.
   Conditionally compiled to allow complete trace logging removal for production
   builds.  Rebuild via `thor compile:base`
-* Player prefs alternative that serializes to JSON in a predictable location on all platforms
+* Steam Cloud ready. Player prefs alternative that serializes to JSON in a predictable location on all platforms
 * On screen debug status line for FPS, Memory, Event Delegates, ScreenSize, KeyCodes, etc
 * In-game debug console for logging and input. Use `KeyCode.BackQuote` to activate.
 * Itch.io Butler package helpers for macOS, Windows, and Linux. See See [./tasks/itch.rb](tasks/itch.rb)

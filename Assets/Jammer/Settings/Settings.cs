@@ -52,13 +52,13 @@ namespace Jammer {
       public static string DataPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(),  "tmp/settings/" + Application.productName);
     #else
       // macOS
-      //    ~/Library/Application Support/Salty\ Dog\ Digital/Fourtex\ Zen/
+      //    ~/Library/Application Support/Your\ Company\ Name/Jammer/
       //
       // Linux
-      //   ~/.config/unity3d/Salty\ Dog\ Digital/Fourtex\ Zen/
+      //   ~/.config/unity3d/Your\ Company\ Name/Jammer/
       //
       // Windows
-      //   ~/AppData/LocalLow/Salty\ Dog\ Digital/Fourtex\ Zen/
+      //   ~/AppData/LocalLow/Your\ Company\ Name/Jammer/
       public static string DataPath = Application.persistentDataPath;
     #endif
 
