@@ -177,8 +177,8 @@ module BasicUnity
 
     # @return [String] company full name from project settings
     def read_company_name
-      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
-      File.open(version_info_file, "r") do |f|
+      filename = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      File.open(filename, "r") do |f|
         contents = f.read.strip
         contents.match(/companyName: (.*)$/)
         $1
@@ -187,8 +187,8 @@ module BasicUnity
 
     # @return [String] product full name from project settings
     def read_product_name
-      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
-      File.open(version_info_file, "r") do |f|
+      filename = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      File.open(filename, "r") do |f|
         contents = f.read.strip
         contents.match(/productName: (.*)$/)
         $1
@@ -197,16 +197,26 @@ module BasicUnity
 
     # @return [String] product indentifier from project settings
     def read_product_identifier
-      version_info_file = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
-      File.open(version_info_file, "r") do |f|
+      filename = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      File.open(filename, "r") do |f|
         contents = f.read.strip
         contents.match(/bundleIdentifier: (.*)$/)
         $1
       end
     end
 
+    # @return [String] the scripting defines "as is", a semicolon delimited list
+    def read_scripting_defines
+      filename = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      File.open(filename, "r") do |f|
+        contents = f.read.strip
+        contents.match(/scriptingDefineSymbols:\n.*1: (.*)$/)
+        $1
+      end
+    end
+
     # @return [String] the version in #.#.# format
-    def read_version_number(version_info_file=nil)
+    def read_version_number(filename=nil)
       version_info_file = File.join(ASSETS_FOLDER, "Resources", "Version.txt") unless version_info_file
       File.open(version_info_file, "r") do |f|
         contents = f.read.strip
@@ -263,6 +273,18 @@ module BasicUnity
 
       json["version"] = number
       File.open(version_info_file, 'w') { |file| file.write(JSON.neat_generate(json, JSON_OPTIONS)) }
+    end
+
+    # write scripting defines directly to ProjectSettings
+    def write_scripting_defines(defines)
+      filename = File.join(PROJECT_FOLDER, "ProjectSettings.asset")
+      contents = ""
+      File.open(filename, "r") do |f|
+        contents = f.read
+      end
+
+      contents = contents.gsub(/scriptingDefineSymbols:\n.*1: .*$/, "scriptingDefineSymbols:\n    1: #{defines}")
+      File.open(filename, 'w') { |file| file.write(contents) }
     end
 
     # write version number directly to ProjectSettings.asset

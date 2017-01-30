@@ -16,3 +16,9 @@
 
 # vim syntax checking response file
 .mcs
+
+# points to the Unity applications binary folder
+.unity
+
+# saved defines managed by CLI builder
+.defines

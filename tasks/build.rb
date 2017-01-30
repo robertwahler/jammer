@@ -79,10 +79,15 @@ module BasicUnity
         end
       end
 
-      write_version_build(nil)
-      command = build_command(target)
-      logfile = build_logfile_filename(target)
-      run_command(command, logfile)
+      invoke("defines:save")
+      begin
+        write_version_build(nil)
+        command = build_command(target)
+        logfile = build_logfile_filename(target)
+        run_command(command, logfile)
+      ensure
+        invoke("defines:restore")
+      end
 
       # grep and display errors
       cmd = "grep 'Error building Player' #{logfile}"
