@@ -10,23 +10,22 @@ module BasicUnity
 
     desc "save", "report current scripting define symbols from ProjectSettings and save them to ./.defines"
     def save
-      defines = read_scripting_defines
+      content = read_scripting_defines
       filename = File.join(ROOT_FOLDER, ".defines")
-      File.open(filename, 'w') { |file| file.write(defines) }
-      say defines
-      say "defines saved", :green
+      File.open(filename, 'w') { |file| file.write(content) }
+      say_status "saved", content, :green
     end
 
     desc "restore", "read ./.defines and write them to ProjectSettings"
     def restore
       filename = File.join(ROOT_FOLDER, ".defines")
-      contents = nil
+      content = nil
       File.open(filename, "r") do |f|
-        contents = f.read.strip
+        content = f.read.strip
       end
 
-      write_scripting_defines(contents)
-      say "defines restored", :green
+      write_scripting_defines(content)
+      say_status "restored", content, :green
     end
 
   end
