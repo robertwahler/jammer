@@ -12,6 +12,20 @@ module BasicUnity
     class_option "defines", :type => :string, :desc => "comma delimited string of compiler defines"
     class_option "simulator", :type => :boolean, :desc => "target iOS/tvOS simulator (defaults to actual device)"
 
+    desc "all", "build for Windows, Linux and OSX using Unity batch mode"
+    def all
+      say_status "Windows", content, :green
+      result = build_target("Windows")
+      if result
+        say_status "Linux", content, :green
+        result = build_target("Linux")
+      end
+      if result
+        say_status "macOS", content, :green
+        result = build_target("OSX")
+      end
+    end
+
     desc "osx", "build for OSX using Unity batch mode"
     def osx
       build_target("OSX")
@@ -65,6 +79,7 @@ module BasicUnity
       "#{unity_binary} -batchmode -nographics -logFile -quit -executeMethod Jammer.Editor.Builder.Perform#{target}#{build}Build #{opt.join(' ')}"
     end
 
+    # do the build, return true on success
     def build_target(target)
       set_instance_variables
       assert_working_folder(ROOT_FOLDER)
@@ -79,22 +94,26 @@ module BasicUnity
         end
       end
 
-      invoke("defines:save")
+      # invoke with "new" to make sure the task can run multiple time
+      Build.new.invoke("defines:save")
       begin
         write_version_build(nil)
         command = build_command(target)
         logfile = build_logfile_filename(target)
-        run_command(command, logfile)
+        result = run_command(command, logfile)
       ensure
-        invoke("defines:restore")
+        # invoke with "new" to make sure the task can run multiple time
+        Build.new.invoke("defines:restore")
       end
 
       # grep and display errors
       cmd = "grep 'Error building Player' #{logfile}"
-      result = system cmd
-      if result
+      grep_result = system cmd
+      if grep_result
         say_status "BUILD ERROR", "review logs for specific error", :red
       end
+
+      (result.exitstatus == 0) && (!grep_result)
     end
 
   end
